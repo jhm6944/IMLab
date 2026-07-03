@@ -166,7 +166,7 @@ function Footer() {
         <div className="im-footer-brand">
           <h4>Immersive Media Lab</h4>
           <div className="aff">
-            서울과학기술대학교 인공지능응용학과<br />
+            서울과학기술대학교 스마트ICT융합공학과<br />
             서울시 노원구 공릉로 232
           </div>
         </div>
