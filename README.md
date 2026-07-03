@@ -1,4 +1,4 @@
-# 실감미디어연구실 · GitHub Pages 배포
+# 실감미디어연구실 · GitHub Pages 배포 
 
 이 폴더는 GitHub Pages에 그대로 올릴 수 있는 정적 파일 세트입니다.
 Google Sites 페이지 안에 iframe으로 임베드해서 사용합니다.
