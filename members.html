@@ -3,48 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Immersive Media Lab · 실감미디어연구실</title>
-  <meta name="description" content="서울과학기술대학교 실감미디어연구실 — VR·AR·XR, 3D 재구성, 뉴럴 렌더링 연구." />
-
+  <title>Members · Immersive Media Lab</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" rel="stylesheet">
-
   <style>
     html, body { margin: 0; padding: 0; background: #f6f4ef; }
     #root { min-height: 100vh; }
-    /* 다른 시안 링크 뱃지 (개발 편의) */
-    .variant-switch {
-      position: fixed; right: 20px; bottom: 20px; z-index: 100;
-      background: #16171b; color: #f6f4ef;
-      padding: 10px 14px; border-radius: 999px;
-      font-family: 'JetBrains Mono', monospace; font-size: 11px;
-      letter-spacing: 0.06em; text-transform: uppercase;
-      text-decoration: none; box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-      display: inline-flex; align-items: center; gap: 8px;
-    }
-    .variant-switch:hover { background: #1B365D; }
-    .variant-switch .dot { width: 6px; height: 6px; background: #a9c5ea; border-radius: 50%; }
   </style>
 </head>
 <body>
   <div id="root"></div>
-
-  <a href="index-b.html" class="variant-switch"><span class="dot"></span>시안 B 보기</a>
-
   <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
-
   <script type="text/babel" src="js/data.jsx"></script>
   <script type="text/babel" src="js/shell.jsx"></script>
-  <script type="text/babel" src="js/hero3d.jsx"></script>
-  <script type="text/babel" src="js/home.jsx"></script>
+  <script type="text/babel" src="js/page-members.jsx"></script>
   <script type="text/babel">
     ReactDOM.createRoot(document.getElementById('root')).render(
-      <Shell active="home"><Home /></Shell>
+      <Shell active="members"><MembersPage /></Shell>
     );
   </script>
 </body>

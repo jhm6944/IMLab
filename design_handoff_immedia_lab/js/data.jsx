@@ -1,9 +1,5 @@
-// 실감미디어연구실 — 공통 데이터
-// 편집 규칙:
-//   • 각 배열의 "맨 앞"이 최신입니다.
-//   • data.jsx만 편집해도 홈/서브페이지에 자동 반영됩니다.
-//   • 홈에는 각 배열의 앞에서 3개가 노출됩니다.
-//   • 리스트 페이지(research.html, publications.html, news.html)는 전체를 노출합니다.
+// 실감미디어연구실 - 공통 데이터
+// 모든 시안이 공유하는 목업 콘텐츠
 
 const LAB_INFO = {
   nameKo: '실감미디어연구실',
@@ -22,12 +18,10 @@ const LAB_INFO = {
   quoteAuthor: '— Pablo Picasso',
   taglineKo: 'ICT 융합 기반의 몰입형 미디어 기술을 연구합니다.',
   taglineEn: 'Immersive media research at the intersection of vision, graphics, and human experience.',
-  aboutKo: '실감미디어연구실은 서울과학기술대학교 인공지능응용학과 소속 연구실입니다. 공간의 재구성, 지각의 확장, 경험의 설계 — 세 축을 중심으로 몰입형 미디어 기술을 탐구합니다.',
+  aboutKo: '실감미디어연구실은 가상현실(VR), 증강현실(AR), 3D 재구성 및 몰입형 인터랙션 기술을 연구합니다. 인간의 감각과 기계의 지각을 잇는 새로운 미디어 경험을 설계하고, 이를 산업과 사회에 응용하는 것을 목표로 합니다.',
   keywords: ['Immersive Media', 'VR / AR / XR', '3D Reconstruction', 'Neural Rendering', 'Human-Centered Computing']
 };
 
-// ─── NEWS ──────────────────────────────────────────────
-// 맨 앞에 추가하면 홈 상단 뉴스 3장이 자동 갱신됩니다.
 const NEWS = [
   {
     date: '2026.06.24',
@@ -52,24 +46,9 @@ const NEWS = [
     titleEn: 'Recruiting graduate students for Fall 2026',
     excerpt: '석·박사 및 통합과정 신입생을 모집합니다. 컴퓨터 비전, 3D 그래픽스, XR에 관심 있는 학생 환영합니다.',
     image: 'assets/news-lab.jpg'
-  },
-  {
-    date: '2026.02.10',
-    tag: 'Talk',
-    title: '지도교수 초청 강연 · KCGS 2026 Keynote',
-    excerpt: '한국컴퓨터그래픽스학회 2026 학술대회에서 "실감미디어와 뉴럴 렌더링의 접점"을 주제로 기조강연을 진행했습니다.',
-    image: 'assets/project-nerf.jpg'
-  },
-  {
-    date: '2025.11.28',
-    tag: 'Collaboration',
-    title: '국립현대미술관과 문화유산 디지털 복원 공동 연구 협약',
-    excerpt: '체적 신경 렌더링 기술을 활용한 문화유산 디지털 아카이빙 협업을 시작합니다.',
-    image: 'assets/project-nerf.jpg'
   }
 ];
 
-// ─── PROJECTS ─────────────────────────────────────────
 const PROJECTS = [
   {
     id: 'gaussian',
@@ -118,7 +97,6 @@ const PROJECTS = [
   }
 ];
 
-// ─── PUBLICATIONS ─────────────────────────────────────
 const PUBLICATIONS = [
   {
     title: 'SC-OmniGS: Self-Calibrating Omnidirectional Gaussian Splatting',
@@ -168,14 +146,13 @@ const MEMBERS = [
   { name: '조OO', nameEn: 'B. Cho', role: 'M.S. Student', title: '석사과정 · 1년차', initial: 'BC' }
 ];
 
-// 각 항목의 href는 실제 페이지로 라우팅됩니다.
 const NAV_ITEMS = [
-  { key: 'home',         ko: '홈',      en: 'Home',         href: 'index.html' },
-  { key: 'research',     ko: '연구',    en: 'Research',     href: 'research.html' },
-  { key: 'publications', ko: '논문',    en: 'Publications', href: 'publications.html' },
-  { key: 'news',         ko: '소식',    en: 'News',         href: 'news.html' },
-  { key: 'members',      ko: '구성원',  en: 'Members',      href: 'members.html' },
-  { key: 'contact',      ko: '연락',    en: 'Contact',      href: 'contact.html' }
+  { key: 'home', ko: '홈', en: 'Home' },
+  { key: 'research', ko: '연구', en: 'Research' },
+  { key: 'publications', ko: '논문', en: 'Publications' },
+  { key: 'members', ko: '구성원', en: 'Members' },
+  { key: 'news', ko: '소식', en: 'News' },
+  { key: 'contact', ko: '연락', en: 'Contact' }
 ];
 
 Object.assign(window, { LAB_INFO, NEWS, PROJECTS, PUBLICATIONS, MEMBERS, NAV_ITEMS });
