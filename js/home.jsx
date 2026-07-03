@@ -176,7 +176,7 @@ function Home() {
         <div className="hm-issue-line">
           <span>Immersive Media Lab · 실감미디어연구실</span>
           <span>서울과학기술대학교 · 스마트ICT융합공학과</span>
-          <!-- <span>Vol.01 · 2026 Summer</span> -->
+          <span>Vol.01 · 2026 Summer</span>
         </div>
 
         <div className="hm-hero-grid">
