@@ -339,7 +339,7 @@ function Home() {
       <section className="im-section" data-screen-label="Featured Publications">
         <div className="im-section-head">
           <span className="im-mono im-section-mono">§ 02 — Featured Publications</span>
-          <h2 className="im-section-title">Selected <em>papers</em></h2>
+          <h2 className="im-section-title">Latest <em>papers</em></h2>
           <a className="im-section-link" href="publications.html">All publications →</a>
         </div>
         <div className="hm-pubs-list">
