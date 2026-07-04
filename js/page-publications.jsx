@@ -1,7 +1,8 @@
-// Publications page — grouped by 5 categories, one item per row with links.
-// Categories: International Journals · Domestic Journals ·
-//             International Conferences · Domestic Conferences · Patents
-// Each row surfaces links to the paper (arXiv / DOI) and code (GitHub).
+// Publications page — 5 categories with anchor jump-nav,
+// classic reference-style entries (authors · title · venue · year),
+// preceded by a thumbnail image.
+
+const { useState: pp_useState, useEffect: pp_useEffect } = React;
 
 function PublicationsPage() {
   const pubs = window.PUBLICATIONS || [];
@@ -13,12 +14,113 @@ function PublicationsPage() {
     items: pubs.filter(p => p.category === c.key)
   }));
 
+  // Track which category section is currently in view for the jump-nav.
+  const [activeCat, setActiveCat] = pp_useState(cats[0]?.key || '');
+
+  pp_useEffect(() => {
+    const sections = cats.map(c => document.getElementById(`pp-cat-${c.key}`)).filter(Boolean);
+    if (!sections.length) return;
+    const obs = new IntersectionObserver((entries) => {
+      // Choose the top-most section that is currently in view.
+      const visible = entries.filter(e => e.isIntersecting)
+        .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+      if (visible[0]) {
+        const id = visible[0].target.id.replace('pp-cat-', '');
+        setActiveCat(id);
+      }
+    }, { rootMargin: '-100px 0px -60% 0px', threshold: 0 });
+    sections.forEach(s => obs.observe(s));
+    return () => obs.disconnect();
+  }, []);
+
+  // Smooth-scroll to a category, accounting for the sticky nav.
+  const jumpTo = (key) => {
+    const el = document.getElementById(`pp-cat-${key}`);
+    if (!el) return;
+    const top = el.getBoundingClientRect().top + window.scrollY - 88;
+    window.scrollTo({ top, behavior: 'smooth' });
+  };
+
+  // Author list rendered with the current lab bolded.
+  const renderAuthors = (authors) => {
+    // Split on comma-space; bold the last author with initial "H." if their surname matches "Jung"
+    // (kept generic — just bold entries containing "H. Jung").
+    const parts = authors.split(/,\s*/);
+    return parts.map((a, i) => {
+      const isLab = /H\.\s*Jung/i.test(a);
+      return (
+        <React.Fragment key={i}>
+          {isLab ? <strong>{a}</strong> : a}
+          {i < parts.length - 1 ? ', ' : ''}
+        </React.Fragment>
+      );
+    });
+  };
+
   return (
     <div>
       <style>{`
-        .pp-cat { padding: 32px 0 8px; }
+        /* Anchor jump-nav — sits just below the page header, sticky */
+        .pp-jump {
+          position: sticky;
+          top: 62px;
+          z-index: 40;
+          background: color-mix(in oklab, var(--paper) 94%, transparent);
+          backdrop-filter: blur(8px);
+          border-bottom: 1px solid rgba(22,23,27,0.1);
+          margin: 0 -40px 12px;
+          padding: 12px 40px;
+        }
+        .pp-jump-inner {
+          max-width: 1360px; margin: 0 auto;
+          display: flex; gap: 8px; align-items: center;
+          flex-wrap: wrap;
+        }
+        .pp-jump-label {
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+          color: var(--muted);
+          margin-right: 8px;
+        }
+        .pp-jump-btn {
+          padding: 7px 14px;
+          border: 1px solid rgba(22,23,27,0.2);
+          border-radius: 999px;
+          background: transparent;
+          color: var(--ink);
+          font-size: 12.5px;
+          font-family: inherit;
+          cursor: pointer;
+          transition: background 0.2s, border-color 0.2s, color 0.2s;
+          display: inline-flex; align-items: center; gap: 8px;
+          white-space: nowrap;
+        }
+        .pp-jump-btn:hover {
+          background: rgba(22,23,27,0.05);
+          border-color: rgba(22,23,27,0.4);
+        }
+        .pp-jump-btn.active {
+          background: var(--ink);
+          color: var(--paper);
+          border-color: var(--ink);
+        }
+        .pp-jump-btn .count {
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 10px;
+          padding: 2px 6px;
+          border-radius: 999px;
+          background: rgba(22,23,27,0.08);
+          color: var(--muted);
+        }
+        .pp-jump-btn.active .count {
+          background: rgba(246,244,239,0.15);
+          color: rgba(246,244,239,0.8);
+        }
+
+        /* Category section */
+        .pp-cat { padding: 40px 0 8px; scroll-margin-top: 120px; }
         .pp-cat-head {
-          display: grid; grid-template-columns: auto 1fr auto; gap: 24px; align-items: baseline;
+          display: grid; grid-template-columns: auto 1fr; gap: 24px; align-items: baseline;
           padding-bottom: 16px;
           border-bottom: 1px solid var(--ink);
           margin-bottom: 8px;
@@ -35,79 +137,121 @@ function PublicationsPage() {
           font-style: italic;
           color: var(--muted);
           font-weight: 300;
-          font-size: 20px;
+          font-size: 18px;
           margin-left: 12px;
         }
         .pp-cat-count {
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
           color: var(--muted);
+          justify-self: end;
         }
 
-        /* One-row list (per user request: no two-column card layout) */
-        .pp-row {
+        /* Reference-style entry */
+        .pp-ref {
           display: grid;
-          grid-template-columns: 80px 1fr auto;
-          gap: 24px;
-          padding: 22px 0;
+          grid-template-columns: 96px 40px 1fr auto;
+          gap: 20px;
+          padding: 22px 4px;
           border-bottom: 1px solid rgba(22,23,27,0.1);
-          align-items: center;
+          align-items: start;
         }
-        .pp-row:last-child { border-bottom: none; }
-        .pp-year {
-          font-family: 'Fraunces', serif;
-          font-size: 26px;
-          color: var(--muted);
-          letter-spacing: -0.01em;
-        }
-        .pp-body { }
-        .pp-venue-line {
-          display: flex; gap: 10px; align-items: center;
-          margin-bottom: 6px;
-          flex-wrap: wrap;
-        }
-        .pp-venue {
-          padding: 2px 8px;
-          background: var(--ink);
-          color: var(--paper);
-          font-family: 'JetBrains Mono', monospace;
-          font-size: 10px;
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
+        .pp-ref:last-child { border-bottom: none; }
+        .pp-ref:hover { background: rgba(22,23,27,0.02); }
+
+        .pp-ref-thumb {
+          width: 96px;
+          aspect-ratio: 4/3;
+          overflow: hidden;
+          background: #111;
           border-radius: 2px;
         }
-        .pp-badge {
-          padding: 2px 8px;
+        .pp-ref-thumb img {
+          width: 100%; height: 100%;
+          object-fit: cover;
+          filter: saturate(0.85) brightness(0.95);
+          transition: transform 0.6s, filter 0.6s;
+        }
+        .pp-ref:hover .pp-ref-thumb img {
+          transform: scale(1.05);
+          filter: saturate(1) brightness(1);
+        }
+
+        .pp-ref-num {
+          font-family: 'Fraunces', serif;
+          font-size: 22px;
+          color: var(--muted);
+          letter-spacing: -0.01em;
+          line-height: 1;
+          padding-top: 2px;
+        }
+
+        .pp-ref-body {
+          font-family: 'Fraunces', serif;
+          font-size: 15.5px;
+          line-height: 1.55;
+          letter-spacing: -0.005em;
+          color: var(--ink);
+        }
+        .pp-ref-authors {
+          font-family: 'Fraunces', serif;
+          font-size: 14.5px;
+          color: var(--muted);
+          margin-bottom: 4px;
+        }
+        .pp-ref-authors strong {
+          color: var(--ink);
+          font-weight: 500;
+        }
+        .pp-ref-title {
+          display: inline;
+          font-family: 'Fraunces', serif;
+          font-size: 17px;
+          font-weight: 500;
+          letter-spacing: -0.01em;
+          color: var(--ink);
+          line-height: 1.35;
+        }
+        .pp-ref-title::after { content: '.'; }
+        .pp-ref-venue {
+          font-style: italic;
+          color: var(--accent);
+        }
+        .pp-ref-venue::before { content: ' '; }
+        .pp-ref-tail {
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 11px;
+          letter-spacing: 0.04em;
+          color: var(--muted);
+          text-transform: none;
+        }
+        .pp-ref-badge {
+          display: inline-block;
+          margin-left: 8px;
+          padding: 1px 7px;
           background: var(--accent);
           color: var(--paper);
           font-family: 'JetBrains Mono', monospace;
-          font-size: 10px;
+          font-size: 9.5px;
           letter-spacing: 0.08em;
           text-transform: uppercase;
           border-radius: 2px;
+          vertical-align: middle;
         }
-        .pp-badge.hl { background: var(--accent-2); }
-        .pp-title {
-          font-family: 'Fraunces', serif;
-          font-size: 19px;
-          line-height: 1.35;
-          letter-spacing: -0.015em;
-          margin: 0 0 4px;
-          font-weight: 400;
-        }
-        .pp-authors {
-          font-size: 13px;
-          color: var(--muted);
-        }
+        .pp-ref-badge.hl { background: var(--accent-2); }
+
         .pp-links {
           display: flex;
-          gap: 8px;
+          gap: 6px;
           align-items: center;
+          padding-top: 2px;
         }
         .pp-link {
           padding: 6px 12px;
           border: 1px solid rgba(22,23,27,0.2);
           border-radius: 999px;
           font-family: 'JetBrains Mono', monospace;
-          font-size: 11px;
+          font-size: 10.5px;
           letter-spacing: 0.06em;
           color: var(--ink);
           text-decoration: none;
@@ -116,47 +260,30 @@ function PublicationsPage() {
           white-space: nowrap;
         }
         .pp-link:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-        .pp-link svg { width: 12px; height: 12px; }
-        .pp-link.disabled {
-          opacity: 0.35;
-          pointer-events: none;
-        }
+        .pp-link svg { width: 11px; height: 11px; }
+        .pp-link.disabled { opacity: 0.3; pointer-events: none; }
 
         .pp-empty {
-          padding: 40px 0;
+          padding: 32px 0;
           color: var(--muted);
           font-style: italic;
           font-family: 'Fraunces', serif;
-          font-size: 16px;
+          font-size: 15px;
         }
 
-        .pp-filter-group {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 12px;
-          margin-top: 24px;
-        }
-        
-        .pp-filter-btn {
-          padding: 8px 16px;
-          border: 1px solid rgba(22,23,27,0.2);
-          border-radius: 999px;
-          font-size: 13.5px;
-          color: var(--ink);
-          text-decoration: none;
-          transition: all 0.2s;
-          background: var(--paper);
-        }
-
-        .pp-filter-btn:hover {
-          background: var(--ink);
-          color: var(--paper);
-        }
-        
         @media (max-width: 820px) {
-          .pp-row { grid-template-columns: 1fr; gap: 8px; }
-          .pp-year { font-size: 18px; }
-          .pp-links { justify-content: flex-start; }
+          .pp-jump { top: 0; margin: 0 -20px 12px; padding: 12px 20px; }
+          .pp-ref {
+            grid-template-columns: 80px 1fr;
+            grid-template-areas:
+              "thumb body"
+              "thumb links";
+            gap: 14px;
+          }
+          .pp-ref-thumb { grid-area: thumb; width: 80px; }
+          .pp-ref-num { display: none; }
+          .pp-ref-body { grid-area: body; font-size: 14.5px; }
+          .pp-links { grid-area: links; flex-wrap: wrap; }
         }
       `}</style>
 
@@ -168,26 +295,40 @@ function PublicationsPage() {
             All lab publications, grouped by venue type. Each entry links to the
             paper (arXiv / DOI) and, when available, the code repository.
           </p>
+        </div>
+      </section>
 
-          <div className="pp-filter-group">
-            {cats.map((c) => (
-              <a key={c.key} href={`#cat-${c.key}`} className="pp-filter-btn">
-                {c.labelKo} ({c.label})
-              </a>
+      {/* Category jump-nav */}
+      <section className="im-section" data-screen-label="Category Nav">
+        <div className="pp-jump">
+          <div className="pp-jump-inner">
+            <span className="pp-jump-label">Jump to</span>
+            {grouped.map(g => (
+              <button
+                key={g.key}
+                className={`pp-jump-btn ${activeCat === g.key ? 'active' : ''}`}
+                onClick={() => jumpTo(g.key)}
+              >
+                <span>{g.label}</span>
+                <span className="count">{g.items.length}</span>
+              </button>
             ))}
           </div>
-          
         </div>
       </section>
 
       {grouped.map((g) => (
-        <section key={g.key} id={`cat-${g.key}`} className="im-section pp-cat" data-screen-label={g.label}>
+        <section
+          key={g.key}
+          id={`pp-cat-${g.key}`}
+          className="im-section pp-cat"
+          data-screen-label={g.label}
+        >
           <div className="pp-cat-head">
             <h2 className="pp-cat-title">
               {g.label}<em>{g.labelKo}</em>
             </h2>
-            <div></div>
-            <div className="im-mono pp-cat-count">
+            <div className="pp-cat-count">
               {g.items.length} {g.items.length === 1 ? 'entry' : 'entries'}
             </div>
           </div>
@@ -197,19 +338,26 @@ function PublicationsPage() {
           ) : (
             <div>
               {g.items.map((p, i) => (
-                <div key={p.id || i} className="pp-row">
-                  <div className="pp-year">{p.year}</div>
-                  <div className="pp-body">
-                    <div className="pp-venue-line">
-                      <span className="pp-venue">{p.venue}</span>
-                      {p.tag && (
-                        <span className={`pp-badge ${p.tag === 'highlight' ? 'hl' : ''}`}>
-                          {p.tag}
-                        </span>
-                      )}
+                <div key={p.id || i} className="pp-ref">
+                  <div className="pp-ref-thumb">
+                    <img src={p.image} alt="" />
+                  </div>
+                  <div className="pp-ref-num">
+                    [{String(g.items.length - i).padStart(2, '0')}]
+                  </div>
+                  <div className="pp-ref-body">
+                    <div className="pp-ref-authors">
+                      {renderAuthors(p.authors)}
+                      <span className="pp-ref-tail"> · ({p.year})</span>
                     </div>
-                    <h3 className="pp-title">{p.title}</h3>
-                    <div className="pp-authors">{p.authors}</div>
+                    <span className="pp-ref-title">{p.title}</span>
+                    <em className="pp-ref-venue">{p.venue}</em>
+                    <span className="pp-ref-tail">, {p.year}.</span>
+                    {p.tag && (
+                      <span className={`pp-ref-badge ${p.tag === 'highlight' ? 'hl' : ''}`}>
+                        {p.tag}
+                      </span>
+                    )}
                   </div>
                   <div className="pp-links">
                     <a
