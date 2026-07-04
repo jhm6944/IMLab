@@ -1,5 +1,5 @@
-// 공통 셸: Nav + Footer + 전역 스타일
-// 각 페이지는 <Shell active="research"><PageBody/></Shell> 형태로 사용합니다.
+// Common shell: Nav + Footer + global styles
+// Each page uses <Shell active="research"><PageBody/></Shell>.
 
 function ShellStyles() {
   return (
@@ -41,9 +41,14 @@ function ShellStyles() {
         padding: 18px 40px;
         display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 40px;
       }
-      .im-brand { display: flex; align-items: center; gap: 12px; }
-      .im-brand-mark { width: 22px; height: 22px; border: 1.5px solid var(--ink); border-radius: 50%; display: inline-block; position: relative; }
-      .im-brand-mark::after { content:''; position:absolute; inset: 5px; background: var(--ink); border-radius: 50%; }
+      .im-brand { display: flex; align-items: center; gap: 14px; }
+      .im-brand-mark {
+        width: 44px; height: 33px; /* preserve 302×228 aspect of the mark */
+        display: inline-flex; align-items: center; justify-content: center;
+        flex-shrink: 0;
+      }
+      .im-brand-mark img,
+      .im-brand-mark svg { width: 100%; height: 100%; display: block; object-fit: contain; }
       .im-brand-name { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.1; }
       .im-brand-sub { font-size: 10.5px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 2px; }
       .im-nav-list { display: flex; gap: 4px; justify-content: center; }
@@ -54,8 +59,13 @@ function ShellStyles() {
       }
       .im-nav-link:hover { background: rgba(22,23,27,0.05); }
       .im-nav-link.active { background: var(--ink); color: var(--paper); }
-      .im-nav-right { display: flex; align-items: center; gap: 12px; font-size: 12px; color: var(--muted); }
-      .im-nav-locale { padding: 4px 10px; border: 1px solid rgba(22,23,27,0.15); border-radius: 999px; cursor: pointer; }
+      .im-nav-right {
+        display: flex; flex-direction: column; align-items: flex-end; justify-content: center;
+        gap: 2px;
+        text-align: right;
+      }
+      .im-nav-right .aff { font-size: 12.5px; color: var(--ink); font-weight: 500; letter-spacing: -0.005em; }
+      .im-nav-right .dept { font-size: 11px; color: var(--muted); letter-spacing: 0.02em; }
 
       /* SECTION */
       .im-section { max-width: 1360px; margin: 0 auto; padding: 0 40px; }
@@ -80,7 +90,7 @@ function ShellStyles() {
       .im-cta:hover { background: var(--accent); }
       .im-cta-ghost { padding: 12px 0; color: var(--ink); font-size: 13px; text-decoration: none; border-bottom: 1px solid var(--ink); }
 
-      /* PAGE HEADER (서브페이지 공용) */
+      /* PAGE HEADER (shared) */
       .im-page-header { padding: 56px 0 40px; border-bottom: 1px solid rgba(22,23,27,0.12); margin-bottom: 8px; }
       .im-page-header .breadcrumb { color: var(--muted); margin-bottom: 20px; }
       .im-page-header h1 {
@@ -90,9 +100,6 @@ function ShellStyles() {
       }
       .im-page-header h1 em { font-style: italic; color: var(--accent); font-weight: 300; }
       .im-page-header .sub { color: var(--muted); font-size: 15px; max-width: 60ch; }
-      .im-page-header .meta { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--ink); }
-      .im-page-header .count { font-family: 'Fraunces', serif; font-size: 32px; }
-      .im-page-header .count-label { color: var(--muted); }
 
       /* FOOTER */
       .im-footer { padding: 80px 0 48px; border-top: 1px solid rgba(22,23,27,0.15); margin-top: 100px; }
@@ -128,16 +135,30 @@ function ShellStyles() {
   );
 }
 
+// IMMEDIA lab mark — the provisional 3D isometric "iML" mark supplied by the lab.
+// Rendered from the raster asset in /assets/logo-mark.png so the exact line-art
+// stays true to the source. Height is scaled to fit the nav row (~33px).
+function LabMark() {
+  return (
+    <img
+      src="assets/logo-mark.png"
+      alt="Immersive Media Lab"
+      draggable="false"
+    />
+  );
+}
+
 function Nav({ active = 'home' }) {
   const items = window.NAV_ITEMS;
+  const info = window.LAB_INFO;
   return (
     <nav className="im-nav">
       <div className="im-nav-inner">
         <a href="index.html" className="im-brand" aria-label="Home">
-          <span className="im-brand-mark"></span>
+          <span className="im-brand-mark"><LabMark /></span>
           <div>
             <div className="im-brand-name">Immersive Media Lab</div>
-            <div className="im-brand-sub">SeoulTech · 실감미디어연구실</div>
+            <div className="im-brand-sub">IMMEDIA · SeoulTech</div>
           </div>
         </a>
         <div className="im-nav-list">
@@ -152,7 +173,8 @@ function Nav({ active = 'home' }) {
           ))}
         </div>
         <div className="im-nav-right">
-          <span className="im-nav-locale im-mono">KO / EN</span>
+          <span className="aff">{info.affiliationEn}</span>
+          <span className="dept">{info.departmentEn}</span>
         </div>
       </div>
     </nav>
@@ -160,14 +182,16 @@ function Nav({ active = 'home' }) {
 }
 
 function Footer() {
+  const info = window.LAB_INFO;
   return (
     <footer className="im-section im-footer">
       <div className="im-footer-grid">
         <div className="im-footer-brand">
           <h4>Immersive Media Lab</h4>
           <div className="aff">
-            서울과학기술대학교 스마트ICT융합공학과<br />
-            서울시 노원구 공릉로 232
+            {info.affiliationEn}<br />
+            {info.departmentEn}<br />
+            232 Gongneung-ro, Nowon-gu, Seoul, Korea
           </div>
         </div>
         <div className="im-footer-col">
@@ -189,14 +213,14 @@ function Footer() {
         <div className="im-footer-col">
           <h5>Contact</h5>
           <ul>
-            <li><a href="mailto:hmjung@seoultech.ac.kr">hmjung@seoultech.ac.kr</a></li>
+            <li><a href={`mailto:${info.email}`}>{info.email}</a></li>
             <li><a>@immedia_lab</a></li>
             <li><a>GitHub</a></li>
           </ul>
         </div>
       </div>
       <div className="im-footer-bottom">
-        <span>© 2026 Immersive Media Lab · Seoul National University of Science &amp; Technology</span>
+        <span>© 2026 Immersive Media Lab · {info.affiliationEn}</span>
         <span className="im-mono">Last updated · 2026.07</span>
       </div>
     </footer>
@@ -214,4 +238,4 @@ function Shell({ active, children }) {
   );
 }
 
-Object.assign(window, { Shell, Nav, Footer, ShellStyles });
+Object.assign(window, { Shell, Nav, Footer, ShellStyles, LabMark });

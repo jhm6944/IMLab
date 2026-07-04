@@ -1,9 +1,9 @@
-// 실감미디어연구실 — 공통 데이터
-// 편집 규칙:
-//   • 각 배열의 "맨 앞"이 최신입니다.
-//   • data.jsx만 편집해도 홈/서브페이지에 자동 반영됩니다.
-//   • 홈에는 각 배열의 앞에서 3개가 노출됩니다.
-//   • 리스트 페이지(research.html, publications.html, news.html)는 전체를 노출합니다.
+// Immersive Media Lab — shared data
+// Editing rules:
+//   • The FIRST item of each array is the latest.
+//   • Edit only this file; home + subpages update automatically.
+//   • Home shows a curated selection (see PUBLICATIONS.homeFeatured).
+//   • Subpages (research.html, publications.html, news.html) show everything.
 
 const LAB_INFO = {
   nameKo: '실감미디어연구실',
@@ -17,165 +17,249 @@ const LAB_INFO = {
   advisorEn: 'Hyunmin Jung',
   advisorTitle: '조교수',
   email: 'hmjung@seoultech.ac.kr',
-  office: '서울시 노원구 공릉로 232, 서울과학기술대학교',
+  office: '232 Gongneung-ro, Nowon-gu, Seoul, Korea',
+  officeKo: '서울시 노원구 공릉로 232, 서울과학기술대학교',
   quote: '"Everything you can imagine is real."',
   quoteAuthor: '— Pablo Picasso',
-  taglineKo: 'ICT 융합 기반의 몰입형 미디어 기술을 연구합니다.',
   taglineEn: 'Immersive media research at the intersection of vision, graphics, and human experience.',
-  aboutKo: '실감미디어연구실은 서울과학기술대학교 스마트ICT융합공학과 소속 연구실입니다. 공간의 재구성, 지각의 확장, 경험의 설계 — 세 축을 중심으로 몰입형 미디어 기술을 탐구합니다.',
+  aboutEn: 'The Immersive Media Lab (IMMEDIA) at Seoul National University of Science and Technology explores the next generation of immersive media through three axes — spatial reconstruction, perceptual extension, and experience design.',
   keywords: ['Immersive Media', 'VR / AR / XR', '3D Reconstruction', 'Neural Rendering', 'Human-Centered Computing']
 };
 
-// ─── NEWS ──────────────────────────────────────────────
-// 맨 앞에 추가하면 홈 상단 뉴스 3장이 자동 갱신됩니다.
+// ─── NEWS (bilingual titles allowed) ─────────────────────
 const NEWS = [
   {
     date: '2026.06.24',
     tag: 'Publication',
-    title: '연구실 논문 3편이 SIGGRAPH Asia 2026에 채택되었습니다',
-    titleEn: 'Three papers accepted to SIGGRAPH Asia 2026',
-    excerpt: '몰입형 3D 재구성 및 뷰 합성 관련 논문 세 편이 SIGGRAPH Asia 2026 정규 트랙에 채택되었습니다.',
+    title: 'Three papers accepted to SIGGRAPH Asia 2026',
+    titleKo: '연구실 논문 3편이 SIGGRAPH Asia 2026에 채택되었습니다',
+    excerpt: 'Three papers on immersive 3D reconstruction and view synthesis have been accepted to the SIGGRAPH Asia 2026 technical papers track.',
     image: 'assets/news-lab.jpg'
   },
   {
     date: '2026.05.12',
     tag: 'Award',
-    title: '박OO 학생, ICCV 2026 Best Student Paper Honorable Mention 수상',
-    titleEn: 'Student receives ICCV 2026 Best Student Paper Honorable Mention',
-    excerpt: '360도 옴니디렉셔널 SLAM 연구로 국제학회 최우수 학생 논문 우수상을 수상하였습니다.',
+    title: 'Student receives ICCV 2026 Best Student Paper Honorable Mention',
+    titleKo: '박OO 학생, ICCV 2026 Best Student Paper Honorable Mention 수상',
+    excerpt: 'The lab received a Best Student Paper Honorable Mention at ICCV 2026 for work on 360° omnidirectional SLAM.',
     image: 'assets/news-volcap.jpg'
   },
   {
     date: '2026.03.02',
     tag: 'Recruit',
-    title: '2026학년도 후기 대학원생을 모집합니다',
-    titleEn: 'Recruiting graduate students for Fall 2026',
-    excerpt: '석·박사 및 통합과정 신입생을 모집합니다. 컴퓨터 비전, 3D 그래픽스, XR에 관심 있는 학생 환영합니다.',
+    title: 'Recruiting graduate students for Fall 2026',
+    titleKo: '2026학년도 후기 대학원생을 모집합니다',
+    excerpt: 'We are recruiting new MS, PhD, and integrated MS/PhD students. Students interested in computer vision, 3D graphics, and XR are welcome.',
     image: 'assets/news-lab.jpg'
   },
   {
     date: '2026.02.10',
     tag: 'Talk',
-    title: '지도교수 초청 강연 · KCGS 2026 Keynote',
-    excerpt: '한국컴퓨터그래픽스학회 2026 학술대회에서 "실감미디어와 뉴럴 렌더링의 접점"을 주제로 기조강연을 진행했습니다.',
+    title: 'Keynote at KCGS 2026',
+    titleKo: '지도교수 초청 강연 · KCGS 2026 Keynote',
+    excerpt: 'The lab director delivered a keynote titled "Immersive Media and Neural Rendering" at the Korea Computer Graphics Society Conference 2026.',
     image: 'assets/project-nerf.jpg'
   },
   {
     date: '2025.11.28',
     tag: 'Collaboration',
-    title: '국립현대미술관과 문화유산 디지털 복원 공동 연구 협약',
-    excerpt: '체적 신경 렌더링 기술을 활용한 문화유산 디지털 아카이빙 협업을 시작합니다.',
+    title: 'Digital heritage collaboration with MMCA',
+    titleKo: '국립현대미술관과 문화유산 디지털 복원 공동 연구 협약',
+    excerpt: 'A joint research agreement on digital cultural heritage archiving using volumetric neural rendering has begun.',
     image: 'assets/project-nerf.jpg'
   }
 ];
 
 // ─── PROJECTS ─────────────────────────────────────────
+// `ongoing: true|false` — shown as a badge on the research list.
 const PROJECTS = [
   {
     id: 'gaussian',
     title: 'Omnidirectional Gaussian Splatting',
-    titleKo: '전방위 가우시안 스플래팅',
     year: '2026',
     tag: '3D Reconstruction',
+    ongoing: true,
     image: 'assets/project-gaussian.jpg',
-    desc: '단일 360도 카메라로부터 실시간 3D 씬을 재구성하는 자기보정형 가우시안 스플래팅 기법.'
+    desc: 'Self-calibrating Gaussian Splatting for real-time 3D scene reconstruction from a single 360° camera.'
   },
   {
     id: 'nerf',
     title: 'Volumetric Neural Rendering',
-    titleKo: '체적 신경 렌더링',
     year: '2025',
     tag: 'Neural Rendering',
+    ongoing: true,
     image: 'assets/project-nerf.jpg',
-    desc: '뉴럴 라디언스 필드를 활용한 문화유산 디지털 복원 및 몰입형 관람 시스템.'
+    desc: 'Neural radiance field-based digital restoration and immersive viewing system for cultural heritage.'
   },
   {
     id: '360',
     title: '360° Visual Localization',
-    titleKo: '360도 시각 측위',
     year: '2025',
     tag: 'Vision',
+    ongoing: true,
     image: 'assets/project-360.jpg',
-    desc: '옴니디렉셔널 카메라 기반 대규모 실내외 환경의 정밀 위치 추정 데이터셋 및 벤치마크.'
+    desc: 'Dataset and benchmark for precise indoor / outdoor localization using omnidirectional cameras at scale.'
   },
   {
     id: 'slam',
     title: 'Photo-SLAM',
-    titleKo: '사실적 매핑 SLAM',
     year: '2024',
     tag: 'SLAM',
+    ongoing: false,
     image: 'assets/project-slam.jpg',
-    desc: '단일 카메라에서 사실적 렌더링과 로컬라이제이션을 동시에 수행하는 실시간 시스템.'
+    desc: 'Real-time system performing photorealistic rendering and localization simultaneously from a single camera.'
   },
   {
     id: 'ar',
     title: 'AR Spatial Anchoring',
-    titleKo: 'AR 공간 앵커링',
     year: '2024',
     tag: 'AR',
+    ongoing: false,
     image: 'assets/project-ar.jpg',
-    desc: '도시 규모 환경에서의 지속 가능한 증강현실 콘텐츠 배치 및 상호작용 프레임워크.'
+    desc: 'Framework for persistent AR content placement and interaction at urban scale.'
   }
 ];
 
 // ─── PUBLICATIONS ─────────────────────────────────────
+// category: 'intl-journal' | 'domestic-journal' | 'intl-conference' | 'domestic-conference' | 'patent'
+// Optional links: paper (PDF / DOI / arXiv), code (GitHub), project (project page).
 const PUBLICATIONS = [
   {
+    id: 'sc-omnigs',
+    category: 'intl-conference',
     title: 'SC-OmniGS: Self-Calibrating Omnidirectional Gaussian Splatting',
     authors: 'H. Park, J. Kim, S. Lee, H. Jung',
     venue: 'ICLR',
     year: '2026',
     tag: 'oral',
+    paper: 'https://arxiv.org/abs/example-1',
+    code: 'https://github.com/jhm6944/sc-omnigs',
     image: 'assets/project-gaussian.jpg'
   },
   {
+    id: 'realtime-photo',
+    category: 'intl-conference',
     title: 'Real-time Photorealistic Mapping for Immersive Telepresence',
     authors: 'M. Choi, H. Park, H. Jung',
     venue: 'SIGGRAPH Asia',
     year: '2026',
+    paper: 'https://doi.org/example-2',
     image: 'assets/project-slam.jpg'
   },
   {
+    id: '360loc',
+    category: 'intl-conference',
     title: '360Loc: A Benchmark for Omnidirectional Visual Localization',
     authors: 'J. Kim, S. Lee, H. Jung',
     venue: 'CVPR',
     year: '2025',
     tag: 'highlight',
+    paper: 'https://arxiv.org/abs/example-3',
+    code: 'https://github.com/jhm6944/360loc',
     image: 'assets/project-360.jpg'
   },
   {
+    id: 'volcap-tvcg',
+    category: 'intl-journal',
+    title: 'Volumetric Capture for Cultural Heritage Digital Twins',
+    authors: 'S. Lee, H. Park, H. Jung',
+    venue: 'IEEE TVCG',
+    year: '2026',
+    paper: 'https://doi.org/example-tvcg',
+    image: 'assets/project-nerf.jpg'
+  },
+  {
+    id: 'volrender-eccv',
+    category: 'intl-conference',
     title: 'Volumetric Rendering for Cultural Heritage Preservation',
     authors: 'S. Lee, H. Park, H. Jung',
     venue: 'ECCV',
     year: '2024',
+    paper: 'https://doi.org/example-4',
     image: 'assets/project-nerf.jpg'
   },
   {
+    id: 'persistent-ar',
+    category: 'intl-conference',
     title: 'Persistent AR Anchoring at Urban Scale',
     authors: 'M. Choi, J. Kim, H. Jung',
     venue: 'IEEE VR',
     year: '2024',
+    paper: 'https://doi.org/example-5',
     image: 'assets/project-ar.jpg'
+  },
+  {
+    id: 'kjcgs-2025',
+    category: 'domestic-journal',
+    title: '옴니디렉셔널 카메라 기반 실내 매핑 (Omnidirectional Indoor Mapping)',
+    authors: 'J. Kim, H. Jung',
+    venue: '한국컴퓨터그래픽스학회논문지',
+    year: '2025',
+    paper: 'https://example.kr/paper',
+    image: 'assets/project-360.jpg'
+  },
+  {
+    id: 'kcgs-2026',
+    category: 'domestic-conference',
+    title: '뉴럴 렌더링 기반 문화유산 디지털 아카이브 (Neural Rendering for Cultural Heritage Archives)',
+    authors: 'S. Lee, H. Jung',
+    venue: 'KCGS · 한국컴퓨터그래픽스학회 학술대회',
+    year: '2026',
+    image: 'assets/project-nerf.jpg'
+  },
+  {
+    id: 'patent-omni',
+    category: 'patent',
+    title: '전방위 카메라 기반 실시간 3D 재구성 방법 및 시스템',
+    authors: 'H. Jung, H. Park',
+    venue: 'KR 10-2026-XXXXXXX',
+    year: '2026',
+    image: 'assets/project-gaussian.jpg'
   }
 ];
 
+// Which publication IDs to feature on the Home page (in order shown).
+// Curated manually — not "latest". Edit here to change the Home highlights.
+const PUBLICATIONS_HOME_FEATURED = ['sc-omnigs', '360loc', 'volcap-tvcg'];
+
+// Human-readable labels for the 5 publication categories.
+const PUB_CATEGORIES = [
+  { key: 'intl-journal',       label: 'International Journals',    labelKo: '해외 저널' },
+  { key: 'domestic-journal',   label: 'Domestic Journals',         labelKo: '국내 저널' },
+  { key: 'intl-conference',    label: 'International Conferences', labelKo: '국제 학술대회' },
+  { key: 'domestic-conference',label: 'Domestic Conferences',      labelKo: '국내 학술대회' },
+  { key: 'patent',             label: 'Patents',                   labelKo: '특허' }
+];
+
+// ─── MEMBERS ───────────────────────────────────────────
+// `interests` replaces the "0-year" placeholder for junior students.
 const MEMBERS = [
-  { name: '정희민', nameEn: 'Heemin Jung', role: 'Principal Investigator', title: '부교수 · Ph.D.', initial: 'HJ' },
-  { name: '박OO', nameEn: 'H. Park', role: 'Ph.D. Student', title: '박사과정 · 4년차', initial: 'HP' },
-  { name: '김OO', nameEn: 'J. Kim', role: 'Ph.D. Student', title: '박사과정 · 2년차', initial: 'JK' },
-  { name: '이OO', nameEn: 'S. Lee', role: 'M.S. Student', title: '석사과정 · 2년차', initial: 'SL' },
-  { name: '최OO', nameEn: 'M. Choi', role: 'M.S. Student', title: '석사과정 · 1년차', initial: 'MC' },
-  { name: '조OO', nameEn: 'B. Cho', role: 'M.S. Student', title: '석사과정 · 1년차', initial: 'BC' }
+  { name: '정희민', nameEn: 'Heemin Jung', role: 'Principal Investigator', title: 'Associate Professor · Ph.D.', initial: 'HJ',
+    interests: ['3D Vision', 'Neural Rendering', 'Immersive Media'] },
+  { name: '박OO', nameEn: 'H. Park', role: 'Ph.D. Student', initial: 'HP',
+    interests: ['Gaussian Splatting', '3D Reconstruction'] },
+  { name: '김OO', nameEn: 'J. Kim', role: 'Ph.D. Student', initial: 'JK',
+    interests: ['Visual Localization', 'Omnidirectional Vision'] },
+  { name: '이OO', nameEn: 'S. Lee', role: 'M.S. Student', initial: 'SL',
+    interests: ['NeRF', 'Cultural Heritage'] },
+  { name: '최OO', nameEn: 'M. Choi', role: 'M.S. Student', initial: 'MC',
+    interests: ['SLAM', 'Photorealistic Rendering'] },
+  { name: '조OO', nameEn: 'B. Cho', role: 'M.S. Student', initial: 'BC',
+    interests: ['AR / XR', 'Human-Computer Interaction'] }
 ];
 
-// 각 항목의 href는 실제 페이지로 라우팅됩니다.
+// Navigation is English-only now.
 const NAV_ITEMS = [
-  { key: 'home',         ko: '홈',      en: 'Home',         href: 'index.html' },
-  { key: 'research',     ko: '연구',    en: 'Research',     href: 'research.html' },
-  { key: 'publications', ko: '논문',    en: 'Publications', href: 'publications.html' },
-  { key: 'news',         ko: '소식',    en: 'News',         href: 'news.html' },
-  { key: 'members',      ko: '구성원',  en: 'Members',      href: 'members.html' },
-  { key: 'contact',      ko: '연락',    en: 'Contact',      href: 'contact.html' }
+  { key: 'home',         en: 'Home',         href: 'index.html' },
+  { key: 'research',     en: 'Research',     href: 'research.html' },
+  { key: 'publications', en: 'Publications', href: 'publications.html' },
+  { key: 'news',         en: 'News',         href: 'news.html' },
+  { key: 'members',      en: 'Members',      href: 'members.html' },
+  { key: 'contact',      en: 'Contact',      href: 'contact.html' }
 ];
 
-Object.assign(window, { LAB_INFO, NEWS, PROJECTS, PUBLICATIONS, MEMBERS, NAV_ITEMS });
+Object.assign(window, {
+  LAB_INFO, NEWS, PROJECTS, PUBLICATIONS,
+  PUBLICATIONS_HOME_FEATURED, PUB_CATEGORIES,
+  MEMBERS, NAV_ITEMS
+});

@@ -1,9 +1,9 @@
-// 인터랙티브 3D 히어로 오브젝트 (Three.js)
-// 시안별로 다른 style prop 지원: 'points' | 'wireframe' | 'volumetric'
+// Interactive 3D hero object (Three.js)
+// style: 'points' (room/box), 'logo' (IM monogram point cloud)
 
 const { useEffect: h3d_useEffect, useRef: h3d_useRef } = React;
 
-function Hero3D({ style = 'points', accent = '#1B365D', bg = 'transparent', autoRotate = true, className = '' }) {
+function Hero3D({ style = 'points', accent = '#4a7fbc', bg = 'transparent', autoRotate = true, className = '' }) {
   const mountRef = h3d_useRef(null);
   const stateRef = h3d_useRef({ dragging: false, x: 0, y: 0, rx: 0, ry: 0, vrx: 0, vry: 0 });
 
@@ -34,6 +34,7 @@ function Hero3D({ style = 'points', accent = '#1B365D', bg = 'transparent', auto
     const accentColor = new THREE.Color(accent);
 
     if (style === 'points') {
+      // point cloud on the inside of a box (a "room")
       const geom = new THREE.BufferGeometry();
       const N = 4500;
       const positions = new Float32Array(N * 3);
@@ -72,6 +73,95 @@ function Hero3D({ style = 'points', accent = '#1B365D', bg = 'transparent', auto
       const edges = new THREE.EdgesGeometry(boxGeom);
       const lineMat = new THREE.LineBasicMaterial({ color: accentColor, transparent: true, opacity: 0.15 });
       group.add(new THREE.LineSegments(edges, lineMat));
+    } else if (style === 'logo') {
+      // Renders the IM monogram as a proper 3D point cloud.
+      // Each letter is defined as (x, y) column offsets; points are jittered in z.
+      // I: three-stack column;  M: two columns with a middle notch dip.
+      const clouds = [];
+      // I letter — column at x = -2.2, height 3.2
+      for (let i = 0; i < 600; i++) {
+        const y = (Math.random() - 0.5) * 3.2;
+        const x = -2.2 + (Math.random() - 0.5) * 0.55;
+        const z = (Math.random() - 0.5) * 0.55;
+        clouds.push([x, y, z]);
+      }
+      // I serifs (top & bottom bars)
+      for (let i = 0; i < 300; i++) {
+        const bar = Math.random() < 0.5 ? 1.55 : -1.55;
+        const y = bar + (Math.random() - 0.5) * 0.35;
+        const x = -2.2 + (Math.random() - 0.5) * 1.6;
+        const z = (Math.random() - 0.5) * 0.55;
+        clouds.push([x, y, z]);
+      }
+      // M — two verticals at x = -0.4 and x = 2.4
+      for (const cx of [-0.4, 2.4]) {
+        for (let i = 0; i < 700; i++) {
+          const y = (Math.random() - 0.5) * 3.2;
+          const x = cx + (Math.random() - 0.5) * 0.55;
+          const z = (Math.random() - 0.5) * 0.55;
+          clouds.push([x, y, z]);
+        }
+      }
+      // M — two diagonals from top of each vertical down to the middle notch (x=1.0, y=0)
+      const diagPoints = 600;
+      for (let side = 0; side < 2; side++) {
+        const x0 = side === 0 ? -0.4 : 2.4;
+        const x1 = 1.0;
+        for (let i = 0; i < diagPoints; i++) {
+          const t = Math.random();
+          const x = x0 + (x1 - x0) * t + (Math.random() - 0.5) * 0.5;
+          const y = 1.55 + (0 - 1.55) * t + (Math.random() - 0.5) * 0.4;
+          const z = (Math.random() - 0.5) * 0.55;
+          clouds.push([x, y, z]);
+        }
+      }
+
+      const N = clouds.length;
+      const positions = new Float32Array(N * 3);
+      const colors = new Float32Array(N * 3);
+      for (let i = 0; i < N; i++) {
+        // scale down to fit the frame
+        positions[i * 3] = clouds[i][0] * 0.7;
+        positions[i * 3 + 1] = clouds[i][1] * 0.7;
+        positions[i * 3 + 2] = clouds[i][2] * 0.7;
+        const c = new THREE.Color();
+        const t = Math.random();
+        if (t < 0.75) c.copy(accentColor).multiplyScalar(0.7 + Math.random() * 0.55);
+        else c.setHSL(0.55 + Math.random() * 0.08, 0.35, 0.65 + Math.random() * 0.2);
+        colors[i * 3] = c.r;
+        colors[i * 3 + 1] = c.g;
+        colors[i * 3 + 2] = c.b;
+      }
+      const geom = new THREE.BufferGeometry();
+      geom.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+      geom.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+      const mat = new THREE.PointsMaterial({ size: 0.048, vertexColors: true, transparent: true, opacity: 0.95, sizeAttenuation: true });
+      group.add(new THREE.Points(geom, mat));
+
+      // faint ambient scatter around the monogram
+      const bgN = 800;
+      const bgPos = new Float32Array(bgN * 3);
+      const bgCol = new Float32Array(bgN * 3);
+      for (let i = 0; i < bgN; i++) {
+        const r = 2.6 + Math.random() * 0.6;
+        const th = Math.random() * Math.PI * 2;
+        const ph = (Math.random() - 0.5) * Math.PI * 0.9;
+        bgPos[i * 3] = r * Math.cos(th) * Math.cos(ph);
+        bgPos[i * 3 + 1] = r * Math.sin(ph);
+        bgPos[i * 3 + 2] = r * Math.sin(th) * Math.cos(ph);
+        const c = new THREE.Color().copy(accentColor).multiplyScalar(0.35);
+        bgCol[i * 3] = c.r;
+        bgCol[i * 3 + 1] = c.g;
+        bgCol[i * 3 + 2] = c.b;
+      }
+      const bgGeom = new THREE.BufferGeometry();
+      bgGeom.setAttribute('position', new THREE.BufferAttribute(bgPos, 3));
+      bgGeom.setAttribute('color', new THREE.BufferAttribute(bgCol, 3));
+      const bgMat = new THREE.PointsMaterial({ size: 0.022, vertexColors: true, transparent: true, opacity: 0.6, sizeAttenuation: true });
+      group.add(new THREE.Points(bgGeom, bgMat));
+
+      // pull camera slightly closer
+      camera.position.set(0, 0, 5.2);
     }
 
     scene.add(new THREE.AmbientLight(0xffffff, 0.8));

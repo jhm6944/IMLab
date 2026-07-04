@@ -1,4 +1,7 @@
-// Members 페이지
+// Members page
+// - PI keeps a stylized initial tile (a real photo can be dropped in later)
+// - Graduate students are shown WITHOUT photos, per user request.
+//   Each student card lists research interests instead of "0-year" placeholders.
 
 function MembersPage() {
   const members = window.MEMBERS || [];
@@ -25,25 +28,76 @@ function MembersPage() {
         .mp-pi-body h2 { font-family: 'Fraunces', serif; font-weight: 400; font-size: 48px; letter-spacing: -0.02em; margin: 0 0 8px; }
         .mp-pi-body .en { color: var(--muted); font-size: 20px; font-family: 'Fraunces', serif; font-style: italic; margin-bottom: 24px; }
         .mp-pi-body .role { display: inline-block; padding: 4px 12px; background: var(--ink); color: var(--paper); border-radius: 2px; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 24px; }
-        .mp-pi-body p { font-size: 15px; line-height: 1.7; margin: 0 0 20px; max-width: 55ch; }
-        .mp-pi-fields { display: grid; grid-template-columns: 100px 1fr; gap: 12px 24px; padding-top: 20px; border-top: 1px solid rgba(22,23,27,0.15); font-size: 13.5px; }
+        .mp-pi-body p { font-size: 15px; line-height: 1.7; margin: 0 0 20px; max-width: 60ch; }
+        .mp-pi-fields { display: grid; grid-template-columns: 120px 1fr; gap: 12px 24px; padding-top: 20px; border-top: 1px solid rgba(22,23,27,0.15); font-size: 13.5px; }
         .mp-pi-fields dt { color: var(--muted); }
         .mp-pi-fields dd { margin: 0; }
 
-        .mp-students-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; padding: 24px 0 40px; }
-        .mp-student { }
-        .mp-student-photo {
-          aspect-ratio: 1/1;
-          background: linear-gradient(135deg, #ede9de 0%, #d8d2c2 100%);
-          border-radius: 2px;
-          display: flex; align-items: center; justify-content: center;
-          margin-bottom: 14px;
+        /* Photoless student cards */
+        .mp-students-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 24px;
+          padding: 24px 0 40px;
         }
-        .mp-student-initial { font-family: 'Fraunces', serif; font-size: 48px; font-weight: 400; letter-spacing: -0.02em; }
-        .mp-student-name { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 500; letter-spacing: -0.01em; margin: 0 0 2px; }
-        .mp-student-en { color: var(--muted); font-size: 12.5px; margin-bottom: 8px; }
-        .mp-student-role { font-size: 11px; color: var(--ink); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 4px; }
-        .mp-student-title { font-size: 12.5px; color: var(--muted); }
+        .mp-student {
+          padding: 24px 24px 26px;
+          border: 1px solid rgba(22,23,27,0.15);
+          border-radius: 3px;
+          background: var(--paper);
+          transition: border-color 0.2s, transform 0.3s;
+          display: flex; flex-direction: column; gap: 8px;
+        }
+        .mp-student:hover {
+          border-color: rgba(22,23,27,0.4);
+          transform: translateY(-2px);
+        }
+        .mp-student-role {
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 10px;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          color: var(--muted);
+          margin-bottom: 4px;
+        }
+        .mp-student-name {
+          font-family: 'Fraunces', serif;
+          font-size: 26px;
+          font-weight: 500;
+          letter-spacing: -0.015em;
+          margin: 0;
+          line-height: 1.1;
+        }
+        .mp-student-en {
+          color: var(--muted);
+          font-size: 14px;
+          font-family: 'Fraunces', serif;
+          font-style: italic;
+          margin-bottom: 12px;
+        }
+        .mp-student-interests-label {
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 10px;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          color: var(--muted);
+          padding-top: 12px;
+          margin-top: auto;
+          border-top: 1px solid rgba(22,23,27,0.1);
+          margin-bottom: 8px;
+        }
+        .mp-student-interests {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 6px;
+        }
+        .mp-student-interest {
+          padding: 4px 10px;
+          background: rgba(22,23,27,0.05);
+          border-radius: 999px;
+          font-size: 12px;
+          color: var(--ink);
+        }
 
         @media (max-width: 900px) {
           .mp-pi { grid-template-columns: 200px 1fr; gap: 32px; }
@@ -52,23 +106,18 @@ function MembersPage() {
         @media (max-width: 560px) {
           .mp-pi { grid-template-columns: 1fr; }
           .mp-pi-photo { max-width: 240px; }
+          .mp-students-grid { grid-template-columns: 1fr; }
         }
       `}</style>
 
       <section className="im-section" data-screen-label="Members Header">
         <div className="im-page-header">
           <div className="breadcrumb im-mono">Home / Members</div>
-          <h1><em>구성원</em></h1>
+          <h1><em>Members</em></h1>
           <p className="sub">
-            실감미디어연구실은 지도교수 1인과 대학원 연구원들로 구성되어 있습니다. 연구 관심사에 따라 자율적으로 협업합니다.
+            The Immersive Media Lab consists of one principal investigator and
+            graduate researchers who collaborate freely across research interests.
           </p>
-          <div className="meta">
-            <div>
-              <div className="im-mono count-label">Total members</div>
-              <div className="count">{members.length}</div>
-            </div>
-            <div className="im-mono" style={{color:'var(--muted)'}}>1 PI · {rest.length} students</div>
-          </div>
         </div>
       </section>
 
@@ -80,14 +129,16 @@ function MembersPage() {
           </div>
           <div className="mp-pi-body">
             <span className="role im-mono">Principal Investigator</span>
-            <h2>{pi.name}</h2>
-            <div className="en">{pi.nameEn}</div>
+            <h2>{pi.nameEn}</h2>
+            <div className="en">{pi.name}</div>
             <p>
-              서울과학기술대학교 인공지능응용학과 부교수. 3D 컴퓨터 비전, 뉴럴 렌더링, 몰입형 미디어를 중심으로 연구를 진행하고 있으며, 실감미디어연구실(IMMEDIA)을 이끌고 있습니다.
+              Associate Professor at {info.affiliationEn}, {info.departmentEn}.
+              Research on 3D computer vision, neural rendering, and immersive
+              media. Leads the Immersive Media Lab (IMMEDIA).
             </p>
             <dl className="mp-pi-fields">
               <dt className="im-mono">Position</dt><dd>{pi.title}</dd>
-              <dt className="im-mono">Department</dt><dd>{info.department}</dd>
+              <dt className="im-mono">Department</dt><dd>{info.departmentEn}</dd>
               <dt className="im-mono">Email</dt><dd>{info.email}</dd>
               <dt className="im-mono">Office</dt><dd>{info.office}</dd>
             </dl>
@@ -95,23 +146,25 @@ function MembersPage() {
         </div>
       </section>
 
-      {/* Students */}
+      {/* Students (photoless) */}
       <section className="im-section" data-screen-label="Students">
         <div className="im-section-head">
           <span className="im-mono im-section-mono">§ 01 — Students</span>
-          <h2 className="im-section-title">대학원 <em>연구원</em></h2>
-          <a className="im-section-link" href="contact.html">지원 안내 →</a>
+          <h2 className="im-section-title">Graduate <em>researchers</em></h2>
+          <a className="im-section-link" href="contact.html">How to apply →</a>
         </div>
         <div className="mp-students-grid">
           {rest.map((m, i) => (
             <div key={i} className="mp-student">
-              <div className="mp-student-photo">
-                <span className="mp-student-initial">{m.initial}</span>
+              <div className="mp-student-role">{m.role}</div>
+              <h4 className="mp-student-name">{m.nameEn}</h4>
+              <div className="mp-student-en">{m.name}</div>
+              <div className="mp-student-interests-label">Research Interests</div>
+              <div className="mp-student-interests">
+                {(m.interests || []).map((it, j) => (
+                  <span key={j} className="mp-student-interest">{it}</span>
+                ))}
               </div>
-              <h4 className="mp-student-name">{m.name}</h4>
-              <div className="mp-student-en">{m.nameEn}</div>
-              <div className="im-mono mp-student-role">{m.role}</div>
-              <div className="mp-student-title">{m.title}</div>
             </div>
           ))}
         </div>

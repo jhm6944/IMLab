@@ -1,16 +1,36 @@
-// 홈 페이지 — Compact Editorial
-// 각 배열의 앞 3개(=최신 3개)만 노출. 편집자는 data.jsx의 배열 맨 앞에 항목을 추가하면 됨.
+// Home — Compact Editorial (English-first)
+// The Interactive Contents block now supports carousel-like variants
+// (currently: "room point cloud" and "lab logo point cloud").
+
+const { useState: hm_useState } = React;
 
 function Home() {
   const info = window.LAB_INFO;
   const news = (window.NEWS || []).slice(0, 3);
-  const pubs = (window.PUBLICATIONS || []).slice(0, 3);
+
+  // Publications on Home = curated list (not automatically the latest).
+  const featuredIds = window.PUBLICATIONS_HOME_FEATURED || [];
+  const pubs = featuredIds
+    .map(id => (window.PUBLICATIONS || []).find(p => p.id === id))
+    .filter(Boolean);
+
+  // Ongoing research: pick the first 3 in equal-size cells.
   const projects = (window.PROJECTS || []).slice(0, 3);
+
+  // Interactive contents carousel — two scenes:
+  //   0: "The Room" — inside-of-a-box point cloud, references our capture rigs
+  //   1: "IM Monogram" — our lab mark rendered as a point cloud (per user request)
+  const CONTENTS = [
+    { key: 'room',  label: 'FIG.01 — Point Cloud · Capture Volume', style: 'points', caption: 'A room reconstructed as a sparse point cloud — our capture volume.' },
+    { key: 'logo',  label: 'FIG.02 — Point Cloud · IMMEDIA Mark',   style: 'logo',   caption: 'The lab mark rendered as a 3D point cloud.' }
+  ];
+  const [contentIdx, setContentIdx] = hm_useState(0);
+  const cur = CONTENTS[contentIdx];
 
   return (
     <div className="hm-root">
       <style>{`
-        /* HERO — 축소판 */
+        /* HERO */
         .hm-hero { padding: 56px 0 72px; }
         .hm-issue-line {
           padding-bottom: 14px; margin-bottom: 40px;
@@ -18,8 +38,10 @@ function Home() {
           font-family: 'JetBrains Mono', monospace;
           font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;
           display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+          color: var(--muted);
         }
-        .hm-hero-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 56px; align-items: stretch; min-height: 380px; }
+        .hm-issue-line .right { color: var(--ink); }
+        .hm-hero-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 56px; align-items: stretch; min-height: 420px; }
         .hm-hero-copy { display: flex; flex-direction: column; justify-content: center; }
         .hm-hero-title {
           font-family: 'Fraunces', serif; font-weight: 400;
@@ -27,22 +49,58 @@ function Home() {
           margin: 0 0 28px;
         }
         .hm-hero-title em { font-style: italic; font-weight: 300; color: var(--accent); }
-        .hm-hero-lead { font-size: 16.5px; line-height: 1.6; color: var(--ink); max-width: 42ch; margin: 0 0 28px; }
+        .hm-hero-lead { font-size: 16.5px; line-height: 1.6; color: var(--ink); max-width: 46ch; margin: 0 0 28px; }
         .hm-hero-meta { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
 
+        /* Interactive contents viewer */
         .hm-hero-3d {
           position: relative;
           background: linear-gradient(180deg, #10121a 0%, #050810 100%);
           border-radius: 4px;
           overflow: hidden;
-          min-height: 380px;
+          min-height: 420px;
         }
-        .hm-hero-3d-label { position: absolute; top: 16px; left: 16px; z-index: 2; color: rgba(246,244,239,0.55); pointer-events: none; }
-        .hm-hero-3d-hint { position: absolute; bottom: 16px; right: 16px; z-index: 2; color: rgba(246,244,239,0.55); pointer-events: none; display: flex; align-items: center; gap: 8px; }
+        .hm-hero-3d-label {
+          position: absolute; top: 16px; left: 16px; z-index: 2;
+          color: rgba(246,244,239,0.65); pointer-events: none;
+        }
+        .hm-hero-3d-hint {
+          position: absolute; top: 16px; right: 16px; z-index: 2;
+          color: rgba(246,244,239,0.55); pointer-events: none;
+          display: flex; align-items: center; gap: 8px;
+        }
         .hm-hero-3d-hint .dot { width: 6px; height: 6px; background: rgba(246,244,239,0.4); border-radius: 50%; animation: hmBlink 1.6s infinite; }
         @keyframes hmBlink { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } }
 
-        /* SNAPSHOT BAR — 히어로 바로 아래 3열 수치 요약 */
+        .hm-hero-3d-caption {
+          position: absolute; bottom: 56px; left: 20px; right: 20px; z-index: 2;
+          color: rgba(246,244,239,0.75); font-size: 12.5px;
+          font-family: 'Pretendard Variable', sans-serif;
+          pointer-events: none;
+        }
+
+        /* Carousel dots */
+        .hm-dots {
+          position: absolute; bottom: 18px; left: 0; right: 0; z-index: 3;
+          display: flex; justify-content: center; gap: 10px;
+        }
+        .hm-dot {
+          width: 8px; height: 8px; border-radius: 50%;
+          background: rgba(246,244,239,0.25);
+          border: none; cursor: pointer; padding: 0;
+          transition: background 0.2s, transform 0.2s;
+        }
+        .hm-dot:hover { background: rgba(246,244,239,0.55); }
+        .hm-dot.active { background: rgba(246,244,239,0.95); transform: scale(1.15); }
+        .hm-dots-labels {
+          position: absolute; bottom: 40px; left: 0; right: 0; z-index: 3;
+          text-align: center;
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+          color: rgba(246,244,239,0.55);
+        }
+
+        /* SNAPSHOT BAR */
         .hm-snapshot {
           display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
           padding: 32px 0;
@@ -55,7 +113,7 @@ function Home() {
         .hm-snap-value { font-family: 'Fraunces', serif; font-size: 26px; letter-spacing: -0.015em; line-height: 1.2; }
         .hm-snap-value em { font-style: italic; color: var(--accent); font-weight: 400; }
 
-        /* 최신 News 3개 */
+        /* Latest News */
         .hm-news-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; padding: 8px 0 32px; }
         .hm-news-item { cursor: pointer; display: block; color: inherit; }
         .hm-news-thumb { aspect-ratio: 4/3; overflow: hidden; background: #ddd; border-radius: 2px; margin-bottom: 16px; }
@@ -67,7 +125,7 @@ function Home() {
         .hm-news-title { font-family: 'Fraunces', serif; font-size: 19px; line-height: 1.3; letter-spacing: -0.015em; font-weight: 400; margin: 0 0 6px; }
         .hm-news-excerpt { color: var(--muted); font-size: 13.5px; line-height: 1.5; }
 
-        /* 최신 Publications 3개 - 썸네일 카드 */
+        /* Latest Publications — thumbnail cards */
         .hm-pubs-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; padding: 8px 0 32px; }
         .hm-pub-card {
           display: block; color: inherit; cursor: pointer;
@@ -95,7 +153,7 @@ function Home() {
         .hm-pub-title { font-family: 'Fraunces', serif; font-size: 18px; line-height: 1.3; letter-spacing: -0.015em; margin: 0 0 6px; font-weight: 400; }
         .hm-pub-authors { font-size: 12.5px; color: var(--muted); }
 
-        /* Recruit 배너 */
+        /* Recruit banner */
         .hm-recruit {
           margin: 96px 0 20px;
           display: grid; grid-template-columns: 1.5fr 1fr; gap: 40px;
@@ -115,7 +173,7 @@ function Home() {
         .hm-recruit-mono { color: rgba(246,244,239,0.55); margin-bottom: 16px; }
         .hm-recruit-title { font-family: 'Fraunces', serif; font-weight: 400; font-size: clamp(28px, 3.4vw, 40px); line-height: 1.1; letter-spacing: -0.02em; margin: 0 0 12px; }
         .hm-recruit-title em { font-style: italic; color: #a9c5ea; font-weight: 300; }
-        .hm-recruit-lead { color: rgba(246,244,239,0.75); font-size: 15px; line-height: 1.6; margin: 0 0 20px; max-width: 42ch; }
+        .hm-recruit-lead { color: rgba(246,244,239,0.75); font-size: 15px; line-height: 1.6; margin: 0 0 20px; max-width: 46ch; }
         .hm-recruit-cta {
           display: inline-flex; align-items: center; gap: 10px;
           padding: 12px 20px; background: var(--paper); color: var(--ink); text-decoration: none;
@@ -132,7 +190,7 @@ function Home() {
         .hm-recruit-item:first-child { border-top: none; }
         .hm-recruit-item .num { font-family: 'Fraunces', serif; color: #a9c5ea; }
 
-        /* ABOUT 짧은 요약 */
+        /* About */
         .hm-about-block { padding: 32px 0 16px; display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; }
         .hm-quote { font-family: 'Fraunces', serif; font-size: 30px; font-style: italic; line-height: 1.2; letter-spacing: -0.015em; margin: 0 0 12px; font-weight: 300; }
         .hm-quote-author { color: var(--muted); font-size: 13px; }
@@ -141,21 +199,31 @@ function Home() {
         .hm-about-body { font-size: 16px; line-height: 1.7; }
         .hm-about-cta { margin-top: 24px; display: flex; gap: 16px; }
 
-        /* Research strip — 5개 -> 3개 축소 그리드 */
-        .hm-research-strip { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 8px; padding: 8px 0 32px; }
-        .hm-research-item { position: relative; overflow: hidden; background: #111; border-radius: 2px; display: block; }
+        /* Ongoing research strip — equal 1/3 cells (per request) */
+        .hm-research-strip {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 12px;
+          padding: 8px 0 32px;
+        }
+        .hm-research-item {
+          position: relative;
+          overflow: hidden;
+          background: #111;
+          border-radius: 2px;
+          display: block;
+          aspect-ratio: 4/3;
+        }
         .hm-research-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s, filter 0.6s; filter: saturate(0.85) brightness(0.95); }
         .hm-research-item:hover img { transform: scale(1.04); filter: saturate(1) brightness(1); }
         .hm-research-caption {
           position: absolute; inset: 0; padding: 20px;
           display: flex; flex-direction: column; justify-content: flex-end;
-          background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.75) 100%);
+          background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.78) 100%);
           color: var(--paper);
         }
         .hm-research-caption .tag { color: rgba(246,244,239,0.7); margin-bottom: 6px; }
-        .hm-research-caption .t { font-family: 'Fraunces', serif; font-size: 20px; letter-spacing: -0.015em; margin: 0; font-weight: 400; }
-        .hm-r-large { aspect-ratio: 16/10; }
-        .hm-r-small { aspect-ratio: 3/4; }
+        .hm-research-caption .t { font-family: 'Fraunces', serif; font-size: 20px; letter-spacing: -0.015em; margin: 0; font-weight: 400; line-height: 1.15; }
 
         @media (max-width: 900px) {
           .hm-hero-grid { grid-template-columns: 1fr; }
@@ -167,16 +235,14 @@ function Home() {
           .hm-recruit { grid-template-columns: 1fr; padding: 32px 24px; }
           .hm-about-block { grid-template-columns: 1fr; gap: 32px; }
           .hm-research-strip { grid-template-columns: 1fr; }
-          .hm-r-large, .hm-r-small { aspect-ratio: 4/3; }
         }
       `}</style>
 
       {/* HERO */}
       <section className="im-section hm-hero" data-screen-label="Hero">
         <div className="hm-issue-line">
-          <span>Immersive Media Lab · 실감미디어연구실</span>
-          <span>서울과학기술대학교 · 스마트ICT융합공학과</span>
-          <span>Vol.01 · 2026 Summer</span>
+          <span className="right">Immersive Media Lab · IMMEDIA</span>
+          <span>{info.affiliationEn} · {info.departmentEn}</span>
         </div>
 
         <div className="hm-hero-grid">
@@ -186,27 +252,47 @@ function Home() {
               <br />meets computation.
             </h1>
             <p className="hm-hero-lead">
-              VR·AR·XR, 3D 재구성, 뉴럴 렌더링. 인간의 감각과 기계의 지각을 잇는 몰입형 미디어를 연구합니다.
+              VR · AR · XR, 3D reconstruction, and neural rendering. We study
+              immersive media at the intersection of human perception and
+              machine understanding.
             </p>
             <div className="hm-hero-meta">
               <a className="im-cta" href="research.html">
-                연구 살펴보기 <span>→</span>
+                Explore research <span>→</span>
               </a>
-              <a className="im-cta-ghost" href="contact.html">대학원 지원</a>
+              <a className="im-cta-ghost" href="contact.html">Join the lab</a>
             </div>
           </div>
 
-          <div className="hm-hero-3d">
-            <span className="hm-hero-3d-label im-mono">FIG.01 — Point Cloud</span>
+          {/* Interactive contents viewer — carousel */}
+          <div className="hm-hero-3d" data-screen-label="Interactive Contents">
+            <span className="hm-hero-3d-label im-mono">{cur.label}</span>
             <span className="hm-hero-3d-hint im-mono">
               <span className="dot"></span>
               Drag to rotate
             </span>
-            <Hero3D style="points" accent="#4a7fbc" bg="transparent" />
+
+            {/* re-key so hero3d fully remounts on switch */}
+            <Hero3D key={cur.key} style={cur.style} accent="#4a7fbc" bg="transparent" />
+
+            <div className="hm-hero-3d-caption">{cur.caption}</div>
+            <div className="hm-dots-labels">
+              {String(contentIdx + 1).padStart(2, '0')} / {String(CONTENTS.length).padStart(2, '0')}
+            </div>
+            <div className="hm-dots">
+              {CONTENTS.map((c, i) => (
+                <button
+                  key={c.key}
+                  className={`hm-dot ${i === contentIdx ? 'active' : ''}`}
+                  onClick={() => setContentIdx(i)}
+                  aria-label={c.label}
+                />
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* SNAPSHOT 4열 */}
+        {/* Snapshot */}
         <div className="hm-snapshot">
           <div className="hm-snap-cell">
             <div className="hm-snap-label im-mono">Latest Venue</div>
@@ -218,7 +304,7 @@ function Home() {
           </div>
           <div className="hm-snap-cell">
             <div className="hm-snap-label im-mono">Active Projects</div>
-            <div className="hm-snap-value">{(window.PROJECTS || []).length}<span style={{color:'var(--muted)'}}> ongoing</span></div>
+            <div className="hm-snap-value">{(window.PROJECTS || []).filter(p => p.ongoing).length}<span style={{color:'var(--muted)'}}> ongoing</span></div>
           </div>
           <div className="hm-snap-cell">
             <div className="hm-snap-label im-mono">Members</div>
@@ -227,12 +313,12 @@ function Home() {
         </div>
       </section>
 
-      {/* LATEST NEWS 3 */}
+      {/* Latest News */}
       <section className="im-section" data-screen-label="Latest News">
         <div className="im-section-head">
           <span className="im-mono im-section-mono">§ 01 — Latest News</span>
-          <h2 className="im-section-title">최근 <em>소식</em></h2>
-          <a className="im-section-link" href="news.html">모든 소식 →</a>
+          <h2 className="im-section-title">Latest <em>news</em></h2>
+          <a className="im-section-link" href="news.html">All news →</a>
         </div>
         <div className="hm-news-list">
           {news.map((n, i) => (
@@ -249,16 +335,18 @@ function Home() {
         </div>
       </section>
 
-      {/* LATEST PUBLICATIONS 3 */}
-      <section className="im-section" data-screen-label="Latest Publications">
+      {/* Featured Publications */}
+      <section className="im-section" data-screen-label="Featured Publications">
         <div className="im-section-head">
-          <span className="im-mono im-section-mono">§ 02 — Latest Publications</span>
-          <h2 className="im-section-title">최근 <em>논문</em></h2>
-          <a className="im-section-link" href="publications.html">전체 논문 →</a>
+          <span className="im-mono im-section-mono">§ 02 — Featured Publications</span>
+          <h2 className="im-section-title">Selected <em>papers</em></h2>
+          <a className="im-section-link" href="publications.html">All publications →</a>
         </div>
         <div className="hm-pubs-list">
           {pubs.map((p, i) => (
-            <a key={i} className="hm-pub-card" href="publications.html">
+            <a key={i} className="hm-pub-card" href={p.paper || 'publications.html'}
+               target={p.paper ? '_blank' : undefined}
+               rel={p.paper ? 'noopener' : undefined}>
               <div className="hm-pub-thumb">
                 <img src={p.image} alt="" />
                 {p.tag && <span className={`im-mono hm-pub-badge ${p.tag === 'highlight' ? 'hl' : ''}`}>{p.tag}</span>}
@@ -276,16 +364,16 @@ function Home() {
         </div>
       </section>
 
-      {/* ONGOING RESEARCH strip */}
+      {/* Ongoing Research — three equal 1/3 cells */}
       <section className="im-section" data-screen-label="Research Preview">
         <div className="im-section-head">
           <span className="im-mono im-section-mono">§ 03 — Ongoing Research</span>
-          <h2 className="im-section-title">진행 중인 <em>연구</em></h2>
-          <a className="im-section-link" href="research.html">모든 연구 →</a>
+          <h2 className="im-section-title">Ongoing <em>research</em></h2>
+          <a className="im-section-link" href="research.html">All projects →</a>
         </div>
         <div className="hm-research-strip">
-          {projects.map((p, i) => (
-            <a key={p.id} className={`hm-research-item ${i === 0 ? 'hm-r-large' : 'hm-r-small'}`} href="research.html">
+          {projects.map((p) => (
+            <a key={p.id} className="hm-research-item" href="research.html">
               <img src={p.image} alt={p.title} />
               <div className="hm-research-caption">
                 <span className="im-mono tag">{p.tag} · {p.year}</span>
@@ -296,34 +384,35 @@ function Home() {
         </div>
       </section>
 
-      {/* RECRUIT BANNER */}
+      {/* Recruit */}
       <section className="im-section" data-screen-label="Recruit">
         <div className="hm-recruit">
           <div>
-            <div className="hm-recruit-mono im-mono">■ 2026 Fall Semester · Recruiting</div>
+            <div className="hm-recruit-mono im-mono">■ Recruiting</div>
             <h3 className="hm-recruit-title">
-              몰입형 미디어를<br />
-              <em>함께 연구할</em> 대학원생을 찾습니다.
+              Looking for graduate students to <em>build</em> immersive media with us.
             </h3>
             <p className="hm-recruit-lead">
-              컴퓨터 비전, 3D 그래픽스, VR/AR, 뉴럴 렌더링에 관심 있는 학생 환영합니다. 상시 지원 가능하며, CV와 관심 주제를 이메일로 보내주세요.
+              We welcome students interested in computer vision, 3D graphics,
+              VR/AR, and neural rendering. Applications are accepted year-round —
+              send your CV and research interests by email.
             </p>
-            <a className="hm-recruit-cta" href="contact.html">지원 안내 <span>→</span></a>
+            <a className="hm-recruit-cta" href="contact.html">How to apply <span>→</span></a>
           </div>
           <div className="hm-recruit-right">
-            <div className="hm-recruit-item"><span className="num im-mono">01</span><span>석·박사 통합과정 및 석사·박사 신입생</span></div>
-            <div className="hm-recruit-item"><span className="num im-mono">02</span><span>학부 인턴 (Computer Vision · Graphics 관심자)</span></div>
-            <div className="hm-recruit-item"><span className="num im-mono">03</span><span>연구원 및 방문 연구자 상시 협력</span></div>
+            <div className="hm-recruit-item"><span className="num im-mono">01</span><span>MS, PhD, and integrated MS/PhD candidates</span></div>
+            <div className="hm-recruit-item"><span className="num im-mono">02</span><span>Undergraduate interns (Vision · Graphics)</span></div>
+            <div className="hm-recruit-item"><span className="num im-mono">03</span><span>Visiting researchers and collaborators</span></div>
           </div>
         </div>
       </section>
 
-      {/* ABOUT (짧게) */}
+      {/* About */}
       <section className="im-section" data-screen-label="About">
         <div className="im-section-head">
           <span className="im-mono im-section-mono">§ 04 — About</span>
-          <h2 className="im-section-title">연구실 <em>소개</em></h2>
-          <a className="im-section-link" href="members.html">구성원 보기 →</a>
+          <h2 className="im-section-title">About the <em>lab</em></h2>
+          <a className="im-section-link" href="members.html">Meet the team →</a>
         </div>
         <div className="hm-about-block">
           <div>
@@ -336,10 +425,10 @@ function Home() {
             </div>
           </div>
           <div className="hm-about-body">
-            <p>{info.aboutKo}</p>
+            <p>{info.aboutEn}</p>
             <div className="hm-about-cta">
-              <a className="im-cta-ghost" href="research.html">연구 분야</a>
-              <a className="im-cta-ghost" href="contact.html">문의</a>
+              <a className="im-cta-ghost" href="research.html">Research areas</a>
+              <a className="im-cta-ghost" href="contact.html">Get in touch</a>
             </div>
           </div>
         </div>
