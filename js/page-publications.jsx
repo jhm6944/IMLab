@@ -130,6 +130,29 @@ function PublicationsPage() {
           font-size: 16px;
         }
 
+        .pp-filter-group {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 12px;
+          margin-top: 24px;
+        }
+        
+        .pp-filter-btn {
+          padding: 8px 16px;
+          border: 1px solid rgba(22,23,27,0.2);
+          border-radius: 999px;
+          font-size: 13.5px;
+          color: var(--ink);
+          text-decoration: none;
+          transition: all 0.2s;
+          background: var(--paper);
+        }
+
+        .pp-filter-btn:hover {
+          background: var(--ink);
+          color: var(--paper);
+        }
+        
         @media (max-width: 820px) {
           .pp-row { grid-template-columns: 1fr; gap: 8px; }
           .pp-year { font-size: 18px; }
@@ -145,11 +168,20 @@ function PublicationsPage() {
             All lab publications, grouped by venue type. Each entry links to the
             paper (arXiv / DOI) and, when available, the code repository.
           </p>
+
+          <div className="pp-filter-group">
+            {cats.map((c) => (
+              <a key={c.key} href={`#cat-${c.key}`} className="pp-filter-btn">
+                {c.labelKo} ({c.label})
+              </a>
+            ))}
+          </div>
+          
         </div>
       </section>
 
       {grouped.map((g) => (
-        <section key={g.key} className="im-section pp-cat" data-screen-label={g.label}>
+        <section key={g.key} id={`cat-${g.key}`} className="im-section pp-cat" data-screen-label={g.label}>
           <div className="pp-cat-head">
             <h2 className="pp-cat-title">
               {g.label}<em>{g.labelKo}</em>
