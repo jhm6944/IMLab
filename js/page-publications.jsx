@@ -150,8 +150,8 @@ function PublicationsPage() {
         /* Reference-style entry */
         .pp-ref {
           display: grid;
-          grid-template-columns: 96px 40px 1fr auto;
-          gap: 20px;
+          grid-template-columns: 96px 1fr auto; /* 40px를 지워서 3단 레이아웃으로 변경 */
+          gap: 24px; /* 번호가 빠진 대신 사진과 글자 사이의 간격을 살짝 넓힙니다 */
           padding: 22px 4px;
           border-bottom: 1px solid rgba(22,23,27,0.1);
           align-items: start;
@@ -347,7 +347,7 @@ function PublicationsPage() {
                       <div style={{
                         width: '100%', 
                         height: '100%', 
-                        background: '#111',  /* 기본 색상 (어두운 회색/검정) */
+                        background: '#666',  /* 기본 색상 (어두운 회색/검정) */
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -358,9 +358,6 @@ function PublicationsPage() {
                     </div>
                   )}
                 </div>
-                  <div className="pp-ref-num">
-                    [{String(g.items.length - i).padStart(2, '0')}]
-                  </div>
                   <div className="pp-ref-body">
                     <div className="pp-ref-authors">
                       {renderAuthors(p.authors)}
