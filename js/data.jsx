@@ -249,7 +249,8 @@ const PUBLICATIONS = [
     month: 'Apr.', 
     day: '04',
     year: '2024',
-    image: ''
+    paper: 'https://doi.org/10.8080/1020207031054',
+    image: 'assets/Publications/patent-24-01.jpg'
   },
   {
     id: 'patent-24-02',
@@ -260,7 +261,8 @@ const PUBLICATIONS = [
     month: 'May', 
     day: '28',
     year: '2024',
-    image: ''
+    paper: 'https://doi.org/10.8080/1020180078411',
+    image: 'assets/Publications/patent-24-02.jpg'
   },
   {
     id: 'patent-24-03',
@@ -294,7 +296,8 @@ const PUBLICATIONS = [
     month: 'Feb.', 
     day: '22',
     year: '2023',
-    image: ''
+    paper: 'https://doi.org/10.8080/1020170177683',
+    image: 'assets/Publications/patent-23-01.jpg'
   },
   {
     id: 'patent-23-02',
@@ -316,7 +319,8 @@ const PUBLICATIONS = [
     month: 'Dec.', 
     day: '29',
     year: '2020',
-    image: ''
+    paper: 'https://patentimages.storage.googleapis.com/56/5d/14/a92a66bcf078b9/US10877698.pdf',
+    image: 'assets/Publications/patent-20-01.jpg'
   },
   {
     id: 'patent-20-02',
@@ -327,7 +331,8 @@ const PUBLICATIONS = [
     month: 'Jul.', 
     day: '14',
     year: '2020',
-    image: ''
+    paper: 'https://patentimages.storage.googleapis.com/4f/ba/2e/7e11e50bef31a7/US10713159.pdf',
+    image: 'assets/Publications/patent-20-02.jpg'
   }
 ];
 
