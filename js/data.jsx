@@ -234,18 +234,29 @@ const PUB_CATEGORIES = [
 // ─── MEMBERS ───────────────────────────────────────────
 // `interests` replaces the "0-year" placeholder for junior students.
 const MEMBERS = [
-  { name: '정희민', nameEn: 'Heemin Jung', role: 'Principal Investigator', title: 'Associate Professor · Ph.D.', initial: 'HJ',
-    interests: ['3D Vision', 'Neural Rendering', 'Immersive Media'] },
-  { name: '박OO', nameEn: 'H. Park', role: 'Ph.D. Student', initial: 'HP',
-    interests: ['Gaussian Splatting', '3D Reconstruction'] },
-  { name: '김OO', nameEn: 'J. Kim', role: 'Ph.D. Student', initial: 'JK',
-    interests: ['Visual Localization', 'Omnidirectional Vision'] },
-  { name: '이OO', nameEn: 'S. Lee', role: 'M.S. Student', initial: 'SL',
-    interests: ['NeRF', 'Cultural Heritage'] },
-  { name: '최OO', nameEn: 'M. Choi', role: 'M.S. Student', initial: 'MC',
-    interests: ['SLAM', 'Photorealistic Rendering'] },
-  { name: '조OO', nameEn: 'B. Cho', role: 'M.S. Student', initial: 'BC',
-    interests: ['AR / XR', 'Human-Computer Interaction'] }
+  { name: '정현민', nameEn: 'Hyunmin Jung', role: 'Associate Professor', title: 'Associate Professor · Ph.D.', initial: 'H. Jung', interests: ['3D Vision', 'Neural Rendering', 'Immersive Media'] },
+  { name: '황우섭', nameEn: 'Woo Seob Hwang', role: 'Ph.D. Student', initial: 'W. Hwang',
+    interests: ['Implicit Neural Representation', 'Neural Light Field'] },
+  { name: '양서준', nameEn: 'Seojun Yang', role: 'M.S. Student', initial: 'S. Yang',
+    interests: ['Implicit Neural Representation', 'Neural Light Field'] },
+  { name: '전지우', nameEn: 'Jiwoo Jeon', role: 'M.S. Student', initial: 'J. Jeon',
+    interests: ['ProCam', 'Projection Mapping', 'Video Codec'] },
+  { name: '정인규', nameEn: 'Ingyu Jeong', role: 'M.S. Student', initial: 'I. Jeong',
+    interests: ['Gaussian Splatting', 'GS Compression', 'ProCam'] },
+  { name: '강유진', nameEn: 'Yujin Kang', role: 'B.S. Student', initial: 'Y. Kang',
+    interests: ['eXtended Reality(XR)', 'Human-Computer Interaction'] },
+  { name: '박문선', nameEn: 'Moosun Park', role: 'B.S. Student', initial: 'M. Park',
+    interests: ['eXtended Reality(XR)', 'Human-Computer Interaction'] },
+  { name: '박인수', nameEn: 'Insu Park', role: 'B.S. Student', initial: 'I. Park',
+    interests: ['Gaussian Splatting', 'Generalizable GS, Light Field Display'] },
+  { name: '이예빈', nameEn: 'Yebin Lee', role: 'B.S. Student', initial: 'Y. Lee',
+    interests: ['Implicit Neural Representation', 'Omnidirectional Rendering', 'Virtual Reality'] },
+  { name: '권준용', nameEn: 'Junyong Kwon', role: 'B.S. Student', initial: 'J. Kwon',
+    interests: ['Implicit Neural Representation', 'Neural Light Field'] },
+  { name: '김도연', nameEn: 'Doyeon Kim', role: 'B.S. Student', initial: 'D. Kim',
+    interests: ['3D/4D Gaussian Splatting', 'GS Compression'] },
+  { name: '김선우', nameEn: 'Sun Woo KIM', role: 'B.S. Student', initial: 'S. KIM',
+    interests: ['Gaussian Splatting', 'ProCam', 'Projection Mapping'] }
 ];
 
 // Navigation is English-only now.
