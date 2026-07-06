@@ -197,7 +197,7 @@ const PUBLICATIONS = [
     month: 'May', 
     day: '31',
     year: '2026',
-    paper: '10.5909/JBE.2026.31.3.461',
+    paper: 'https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE12856029',
     image: 'assets/Publications/domestic-journal-26-01.png'
   },
   {
@@ -209,7 +209,7 @@ const PUBLICATIONS = [
     month: 'Nov.', 
     day: '30',
     year: '2025',
-    paper: '10.5909/JBE.2025.30.6.867',
+    paper: 'https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE12481441',
     image: 'assets/Publications/domestic-journal-25-02.png'
   },
   {
@@ -221,7 +221,7 @@ const PUBLICATIONS = [
     month: 'Jul.', 
     day: '31',
     year: '2025',
-    paper: '10.5909/JBE.2025.30.4.660',
+    paper: 'https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE12295609',
     image: 'assets/Publications/domestic-journal-25-01.png'
   },
   {
@@ -233,7 +233,7 @@ const PUBLICATIONS = [
     month: 'Sep.', 
     day: '30',
     year: '2024',
-    paper: '10.5909/JBE.2024.29.5.691',
+    paper: 'https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE11933328',
     image: 'assets/Publications/domestic-journal-24-01.png'
   },
   {
