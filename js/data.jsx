@@ -701,8 +701,8 @@ const PUBLICATIONS_HOME_FEATURED = ['sc-omnigs', '360loc', 'volcap-tvcg'];
 // Human-readable labels for the 5 publication categories.
 const PUB_CATEGORIES = [
   { key: 'intl-journal',       label: 'International Journals',    labelKo: '해외 저널' },
-  { key: 'domestic-journal',   label: 'Domestic Journals',         labelKo: '국내 저널' },
   { key: 'intl-conference',    label: 'International Conferences', labelKo: '국제 학술대회' },
+  { key: 'domestic-journal',   label: 'Domestic Journals',         labelKo: '국내 저널' },
   { key: 'domestic-conference',label: 'Domestic Conferences',      labelKo: '국내 학술대회' },
   { key: 'patent',             label: 'Patents',                   labelKo: '특허' }
 ];
