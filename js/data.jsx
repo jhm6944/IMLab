@@ -208,13 +208,13 @@ const PUBLICATIONS = [
     image: 'assets/project-nerf.jpg'
   },
   {
-    id: 'patent-omni',
+    id: 'patent-000',
     category: 'patent',
-    title: '전방위 카메라 기반 실시간 3D 재구성 방법 및 시스템',
-    authors: 'H. Jung, H. Park',
-    venue: 'KR 10-2026-XXXXXXX',
-    year: '2026',
-    image: 'assets/project-gaussian.jpg'
+    title: '적층 가능한 라이트필드 기반 가상공간 구축 방법 및 장치 (METHOD AND DEVICE FOR CONSTRUCTING STACKABLE LIGHT FIELD-BASED VIRTUAL SPACE)',
+    authors: '이채은, 정현민',
+    venue: '등록 국내 1026559080000',
+    year: 'Apr. 04, 2024',
+    image: ''
   }
 ];
 
