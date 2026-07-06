@@ -189,14 +189,52 @@ const PUBLICATIONS = [
     image: 'assets/project-ar.jpg'
   },
   {
-    id: 'kjcgs-2025',
+    id: 'domestic-journal-26-01',
     category: 'domestic-journal',
-    title: '옴니디렉셔널 카메라 기반 실내 매핑 (Omnidirectional Indoor Mapping)',
-    authors: 'J. Kim, H. Jung',
-    venue: '한국컴퓨터그래픽스학회논문지',
+    title: 'Positional Encoding, Sine 활성화 함수, Fourier Reparameterization 기반 뉴럴라이트필드 표현력 분석',
+    authors: '장영진, 정현민',
+    venue: '방송공학회논문지(Vol.31, No.3)',
+    month: 'May', 
+    day: '31',
+    year: '2026',
+    paper: '10.5909/JBE.2026.31.3.461',
+    image: 'assets/Publications/domestic-journal-26-01.png'
+  },
+  {
+    id: 'domestic-journal-25-02',
+    category: 'domestic-journal',
+    title: '뉴럴 라이트필드 MLP 모델의 효율성 개선을 위한 Bit Precision 변화에 따른 성능 비교 연구',
+    authors: '양서준, 정현민',
+    venue: '방송공학회논문지(Vol.30, No.6)',
+    month: 'Nov.', 
+    day: '30',
     year: '2025',
-    paper: 'https://example.kr/paper',
-    image: 'assets/project-360.jpg'
+    paper: '10.5909/JBE.2025.30.6.867',
+    image: 'assets/Publications/domestic-journal-25-02.png'
+  },
+  {
+    id: 'domestic-journal-25-01',
+    category: 'domestic-journal',
+    title: 'HAP 코덱을 활용한 8K 이상 초고해상도 영상 실시간 재생 최적화 연구',
+    authors: '전지우, 정현민',
+    venue: '방송공학회논문지(Vol.30, No.4)',
+    month: 'Jul.', 
+    day: '31',
+    year: '2025',
+    paper: '10.5909/JBE.2025.30.4.660',
+    image: 'assets/Publications/domestic-journal-25-01.png'
+  },
+  {
+    id: 'domestic-journal-24-01',
+    category: 'domestic-journal',
+    title: 'Neural Light Field 뷰 합성 성능 예측에 효과적인 이미지 복잡도 평가지표에 관한 연구',
+    authors: '김윤동, 정현민',
+    venue: '방송공학회논문지(Vol.29, No.5)',
+    month: 'Sep.', 
+    day: '30',
+    year: '2024',
+    paper: '10.5909/JBE.2024.29.5.691',
+    image: 'assets/Publications/domestic-journal-24-01.png'
   },
   {
     id: 'domestic-conf-25-09',
