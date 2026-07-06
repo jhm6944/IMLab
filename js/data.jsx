@@ -213,7 +213,9 @@ const PUBLICATIONS = [
     title: '적층 가능한 라이트필드 기반 가상공간 구축 방법 및 장치 (METHOD AND DEVICE FOR CONSTRUCTING STACKABLE LIGHT FIELD-BASED VIRTUAL SPACE)',
     authors: '이채은, 정현민',
     venue: '등록 국내 1026559080000',
-    year: 'Apr. 04, 2024',
+    month: 'Apr', 
+    day: '04',
+    year: '2024',
     image: ''
   }
 ];
