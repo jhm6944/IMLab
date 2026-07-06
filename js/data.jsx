@@ -208,14 +208,124 @@ const PUBLICATIONS = [
     image: 'assets/project-nerf.jpg'
   },
   {
-    id: 'patent-000',
+    id: 'patent-26-01',
+    category: 'patent',
+    title: '시간적 인접성 및 공간적 인접성을 동시에 이용한 라이트 필드 압축 방법 및 장치',
+    authors: '정현민',
+    venue: '출원 국내 10-2026-0082430',
+    month: 'May', 
+    day: '07',
+    year: '2026',
+    image: ''
+  },
+  {
+    id: 'patent-25-01',
+    category: 'patent',
+    title: '확장 가능한 뉴럴 라이트 필드(Neural Light Field, NLF) 기반의 임의 뷰 합성 방법 및 장치',
+    authors: '정현민, 정인규',
+    venue: '출원 국내 10-2025-0120157',
+    month: 'Aug.', 
+    day: '27',
+    year: '2025',
+    image: ''
+  },
+  {
+    id: 'patent-25-02',
+    category: 'patent',
+    title: '서로 다른 차원의 명시적 복셀 그리드를 복합적으로 활용하는 신경 광선장 렌더링 장치',
+    authors: '정현민, 정인규',
+    venue: '출원 국내 10-2025-0089702',
+    month: 'Jul.', 
+    day: '04',
+    year: '2025',
+    image: ''
+  },
+  {
+    id: 'patent-24-01',
     category: 'patent',
     title: '적층 가능한 라이트필드 기반 가상공간 구축 방법 및 장치 (METHOD AND DEVICE FOR CONSTRUCTING STACKABLE LIGHT FIELD-BASED VIRTUAL SPACE)',
     authors: '이채은, 정현민',
     venue: '등록 국내 1026559080000',
-    month: 'Apr', 
+    month: 'Apr.', 
     day: '04',
     year: '2024',
+    image: ''
+  },
+  {
+    id: 'patent-24-02',
+    category: 'patent',
+    title: '비휘발성 메모리의 주소를 관리하는 반도체 장치 (SEMICONDUCTOR DEVICE FOR MANAGING ADDRESSES OF NONVOLATILE MEMORY DEVICE)',
+    authors: '정현민, 김선웅, 이효근, 신우재, 이혁재',
+    venue: '등록 국내 1026711410000',
+    month: 'May', 
+    day: '28',
+    year: '2024',
+    image: ''
+  },
+  {
+    id: 'patent-24-03',
+    category: 'patent',
+    title: 'Method and apparatus for virtual space constructing based on stackable light field',
+    authors: 'Chae Eun Rhee, Hyunmin Jung',
+    venue: '등록 미국 US11869137',
+    month: 'Jan.', 
+    day: '09',
+    year: '2024',
+    image: ''
+  },
+  {
+    id: 'patent-24-04',
+    category: 'patent',
+    title: 'Method of encoding/decoding dynamic mesh and recording medium storing method of encoding/decoding dynamic mesh',
+    authors: 'Da Yun NAM, Seong Yong Lim, Hyun Cheol Kim, Chae Eun Rhee, Yong Wook SEO, Hyunmin Jung',
+    venue: '출원 미국 US20260120325A1',
+    month: 'Jun.', 
+    day: '10',
+    year: '2024',
+    image: ''
+  },
+  {
+    id: 'patent-23-01',
+    category: 'patent',
+    title: '비휘발성 메모리의 웨어 레벨링 동작을 관리하는 반도체 장치 (SEMICONDUCTOR DEVICE FOR MANAGING WEAR LEVELLING OPERATION OF NONVOLATILE MEMORY DEVICE)',
+    authors: '정현민, 김선웅, 이효근, 신우재, 이혁재',
+    venue: '등록 국내 1025043680000',
+    month: 'Feb.', 
+    day: '22',
+    year: '2023',
+    image: ''
+  },
+  {
+    id: 'patent-23-02',
+    category: 'patent',
+    title: 'Method of generating micro image and apparatus therefor',
+    authors: 'Chae Eun Rhee, Hyunmin Jung',
+    venue: '출원 미국/중국 US20240121371A1/CN117853554A',
+    month: 'Oct.', 
+    day: '03',
+    year: '2023',
+    image: ''
+  },
+  {
+    id: 'patent-20-01',
+    category: 'patent',
+    title: 'SEMICONDUCTOR DEVICE FOR MANAGING COLD ADDRESSES OF NONVOLATILE MEMORY DEVICE',
+    authors: 'Hyuk-Jae Lee, Woojae Shin, Hyunmin Jung, Sunwoong Kim, Hyokeun Lee',
+    venue: '등록 미국 US10877698',
+    month: 'Dec.', 
+    day: '29',
+    year: '2020',
+    image: ''
+  },
+  {
+    id: 'patent-20-02',
+    category: 'patent',
+    title: 'SEMICONDUCTOR DEVICE FOR MANAGING WEAR LEVELING OPERATION OF NONVOLATILE MEMORY DEVICE',
+    authors: 'Sunwoong Kim, Hyunmin Jung, Hyokeun Lee, Woojae Shin, Hyuk-Jae Lee',
+    venue: '등록 미국 US10713159',
+    month: 'Jul.', 
+    day: '14',
+    year: '2020',
     image: ''
   }
 ];
