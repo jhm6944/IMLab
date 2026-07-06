@@ -340,8 +340,24 @@ function PublicationsPage() {
               {g.items.map((p, i) => (
                 <div key={p.id || i} className="pp-ref">
                   <div className="pp-ref-thumb">
-                    <img src={p.image} alt="" />
-                  </div>
+                    {/* p.image가 존재하면 이미지를 띄우고, 없으면 기본 검은색 박스 렌더링 */}
+                    {p.image ? (
+                      <img src={p.image} alt="" />
+                    ) : (
+                      <div style={{
+                        width: '100%', 
+                        height: '100%', 
+                        background: '#111',  /* 기본 색상 (어두운 회색/검정) */
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        position: 'relative'
+                      }}>
+                        {/* 원하신다면 중앙에 랩실 로고 텍스트를 작게 넣을 수도 있습니다 */}
+                        {/* <span className="im-mono" style={{color: 'rgba(255,255,255,0.2)', fontSize: '10px'}}>IMLab</span> */}
+                    </div>
+                  )}
+                </div>
                   <div className="pp-ref-num">
                     [{String(g.items.length - i).padStart(2, '0')}]
                   </div>
