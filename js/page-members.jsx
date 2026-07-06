@@ -8,6 +8,10 @@ function MembersPage() {
   const info = window.LAB_INFO;
   const pi = members[0];
   const rest = members.slice(1);
+  // Graduate Students: role이 'B.S. Student'가 아닌 학생들
+  const grads = rest.filter(m => m.role !== 'B.S. Student');
+  // Undergraduate Students: role이 'B.S. Student'인 학생들
+  const undergrads = rest.filter(m => m.role === 'B.S. Student');
 
   return (
     <div>
@@ -146,15 +150,39 @@ function MembersPage() {
         </div>
       </section>
 
-      {/* Students (photoless) */}
+      {/* Graduate Students (photoless) */}
       <section className="im-section" data-screen-label="Students">
         <div className="im-section-head">
-          <span className="im-mono im-section-mono">§ 01 — Students</span>
+          <span className="im-mono im-section-mono">§ 01 — Graduate Students</span>
           <h2 className="im-section-title">Graduate <em>researchers</em></h2>
           <a className="im-section-link" href="contact.html">How to apply →</a>
         </div>
         <div className="mp-students-grid">
-          {rest.map((m, i) => (
+          {grads.map((m, i) => (
+            <div key={i} className="mp-student">
+              <div className="mp-student-role">{m.role}</div>
+              <h4 className="mp-student-name">{m.nameEn}</h4>
+              <div className="mp-student-en">{m.name}</div>
+              <div className="mp-student-interests-label">Research Interests</div>
+              <div className="mp-student-interests">
+                {(m.interests || []).map((it, j) => (
+                  <span key={j} className="mp-student-interest">{it}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Undergraduate Students (photoless) */}
+      <section className="im-section" data-screen-label="Students">
+        <div className="im-section-head">
+          <span className="im-mono im-section-mono">§ 02 — Undergraduate Interns</span>
+          <h2 className="im-section-title">Undergraduate <em>researchers</em></h2>
+          <a className="im-section-link" href="contact.html">How to apply →</a>
+        </div>
+        <div className="mp-students-grid">
+          {undergrads.map((m, i) => (
             <div key={i} className="mp-student">
               <div className="mp-student-role">{m.role}</div>
               <h4 className="mp-student-name">{m.nameEn}</h4>
