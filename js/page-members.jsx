@@ -27,6 +27,12 @@ function MembersPage() {
           border-radius: 3px;
           background: linear-gradient(135deg, #1B365D 0%, #0f1f36 100%);
           display: flex; align-items: center; justify-content: center;
+          overflow: hidden; /* 추가됨 */
+        }
+        .mp-pi-photo img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
         }
         .mp-pi-initial { font-family: 'Fraunces', serif; font-size: 88px; color: var(--paper); font-weight: 400; letter-spacing: -0.02em; }
         .mp-pi-body h2 { font-family: 'Fraunces', serif; font-weight: 400; font-size: 48px; letter-spacing: -0.02em; margin: 0 0 8px; }
@@ -129,7 +135,11 @@ function MembersPage() {
       <section className="im-section" data-screen-label="Principal Investigator">
         <div className="mp-pi">
           <div className="mp-pi-photo">
-            <span className="mp-pi-initial">{pi.initial}</span>
+            {pi.image ? (
+              <img src={pi.image} alt={pi.nameEn} />
+            ) : (
+              <span className="mp-pi-initial">{pi.initial}</span>
+            )}
           </div>
           <div className="mp-pi-body">
             <span className="role im-mono">Principal Investigator</span>

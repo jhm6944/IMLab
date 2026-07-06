@@ -234,7 +234,7 @@ const PUB_CATEGORIES = [
 // ─── MEMBERS ───────────────────────────────────────────
 // `interests` replaces the "0-year" placeholder for junior students.
 const MEMBERS = [
-  { name: '정현민', nameEn: 'Hyunmin Jung', role: 'Associate Professor', title: 'Associate Professor · Ph.D.', initial: 'H. Jung', interests: ['3D Vision', 'Neural Rendering', 'Immersive Media'] },
+  { name: '정현민', nameEn: 'Hyunmin Jung', role: 'Principal Investigator', title: 'Associate Professor · Ph.D.', initial: 'H. Jung', image: 'assets/Members/H.Jung.jpg', interests: ['3D Vision', 'Neural Rendering', 'Immersive Media'] },
   { name: '황우섭', nameEn: 'Woo Seob Hwang', role: 'Ph.D. Student', initial: 'W. Hwang',
     interests: ['Implicit Neural Representation', 'Neural Light Field'] },
   { name: '양서준', nameEn: 'Seojun Yang', role: 'M.S. Student', initial: 'S. Yang',
