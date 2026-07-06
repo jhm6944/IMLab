@@ -18,7 +18,9 @@ function MembersPage() {
       <style>{`
         .mp-pi {
           padding: 32px 0 48px;
-          display: grid; grid-template-columns: 320px 1fr; gap: 60px;
+          display: grid; 
+          grid-template-columns: 220px 1fr; /* 너비를 320px에서 220px로 대폭 축소 */
+          gap: 48px; /* 여백도 살짝 줄여서 밀도감 있게 조정 */
           border-bottom: 1px solid rgba(22,23,27,0.15);
           margin-bottom: 8px;
         }
@@ -110,12 +112,13 @@ function MembersPage() {
         }
 
         @media (max-width: 900px) {
-          .mp-pi { grid-template-columns: 200px 1fr; gap: 32px; }
+          /* 200px를 160px 정도로 줄이기 */
+          .mp-pi { grid-template-columns: 160px 1fr; gap: 32px; }
           .mp-students-grid { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 560px) {
-          .mp-pi { grid-template-columns: 1fr; }
-          .mp-pi-photo { max-width: 240px; }
+          .mp-pi { grid-template-columns: 1fr; align-items: start; }
+          .mp-pi-photo { max-width: 180px; margin: 0 auto; } 
           .mp-students-grid { grid-template-columns: 1fr; }
         }
       `}</style>
