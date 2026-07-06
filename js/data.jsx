@@ -271,7 +271,8 @@ const PUBLICATIONS = [
     month: 'Jan.', 
     day: '09',
     year: '2024',
-    image: ''
+    paper: 'https://patentimages.storage.googleapis.com/53/37/7e/1092e1393e35b7/US20230121124A1.pdf',
+    image: 'assets/publications/patent-24-03.png'
   },
   {
     id: 'patent-24-04',
