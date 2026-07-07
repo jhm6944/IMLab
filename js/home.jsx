@@ -100,7 +100,8 @@ function Home() {
           color: rgba(246,244,239,0.55);
         }
 
-        /* SNAPSHOT BAR */
+        /* SNAPSHOT BAR */  
+        /*
         .hm-snapshot {
           display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
           padding: 32px 0;
@@ -112,6 +113,7 @@ function Home() {
         .hm-snap-label { color: var(--muted); margin-bottom: 8px; }
         .hm-snap-value { font-family: 'Fraunces', serif; font-size: 26px; letter-spacing: -0.015em; line-height: 1.2; }
         .hm-snap-value em { font-style: italic; color: var(--accent); font-weight: 400; }
+        */
 
         /* Latest News */
         .hm-news-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; padding: 8px 0 32px; }
@@ -311,6 +313,7 @@ function Home() {
         </div>
 
         {/* Snapshot */}
+        {/* 
         <div className="hm-snapshot">
           <div className="hm-snap-cell">
             <div className="hm-snap-label im-mono">Latest Venue</div>
@@ -329,6 +332,7 @@ function Home() {
             <div className="hm-snap-value">{(window.MEMBERS || []).length}<span style={{color:'var(--muted)'}}> researchers</span></div>
           </div>
         </div>
+        */}
       </section>
 
       {/* Latest News */}
