@@ -9,8 +9,8 @@ function ResearchPage() {
         .rp-list { display: flex; flex-direction: column; padding: 8px 0 40px; }
         .rp-item {
           display: grid;
-          grid-template-columns: 60px 220px 1fr;
-          gap: 32px;
+          grid-template-columns: 220px 1fr; /* 번호 자리를 없애고 2단으로 변경 */
+          gap: 36px; /* 번호가 빠진 대신 사진과 글자 사이의 간격을 조금 넓힙니다 */
           padding: 22px 0;
           border-top: 1px solid rgba(22,23,27,0.15);
           align-items: center;
@@ -109,7 +109,6 @@ function ResearchPage() {
         <div className="rp-list">
           {projects.map((p, i) => (
             <article key={p.id} className="rp-item">
-              <div className="rp-index im-mono">{String(i + 1).padStart(2, '0')}</div>
               <div className="rp-thumb">
                 <img src={p.image} alt={p.title} />
               </div>
