@@ -74,49 +74,40 @@ const NEWS = [
 // `ongoing: true|false` — shown as a badge on the research list.
 const PROJECTS = [
   {
-    id: 'gaussian',
-    title: 'Omnidirectional Gaussian Splatting',
-    year: '2026',
-    tag: '3D Reconstruction',
+    id: 'proj-26-02',
+    title: '디지털선도기술핵심인재양성(R&D) AI반도체융합전공 학·석사 연계과정 (서울과학기술대학교)',
+    year: '2026-2030',
+    tag: 'AI Semiconductor',
     ongoing: true,
-    image: 'assets/project-gaussian.jpg',
-    desc: 'Self-calibrating Gaussian Splatting for real-time 3D scene reconstruction from a single 360° camera.'
+    image: 'assets/Projects/proj-26-02.png',
+    desc: '학부와 석사 과정을 통합하여 현장에 즉시 투입 가능한 인공지능 반도체 고급 인재 양성 프로그램.'
   },
   {
-    id: 'nerf',
-    title: 'Volumetric Neural Rendering',
-    year: '2025',
-    tag: 'Neural Rendering',
+    id: 'proj-26-01',
+    title: '라이트필드 디스플레이를 위한 실시간 고정밀-고효율-고속 라이트필드 처리 프레임워크',
+    year: '2026-2029',
+    tag: 'Immersive Media',
     ongoing: true,
-    image: 'assets/project-nerf.jpg',
-    desc: 'Neural radiance field-based digital restoration and immersive viewing system for cultural heritage.'
+    image: 'assets/Projects/proj-26-01.png',
+    desc: '라이트필드 디스플레이를 위한 대규모/대용량 라이트필드 데이터의 실시간 고정밀-고효율-고속 라이트필드 처리 프레임워크 개발.'
   },
   {
-    id: '360',
-    title: '360° Visual Localization',
-    year: '2025',
-    tag: 'Vision',
-    ongoing: true,
-    image: 'assets/project-360.jpg',
-    desc: 'Dataset and benchmark for precise indoor / outdoor localization using omnidirectional cameras at scale.'
-  },
-  {
-    id: 'slam',
-    title: 'Photo-SLAM',
-    year: '2024',
-    tag: 'SLAM',
+    id: 'proj-23-01',
+    title: '스트리밍 3차원 디지털미디어 서비스 기술',
+    year: '2023-2025',
+    tag: '3D Media Streaming',
     ongoing: false,
-    image: 'assets/project-slam.jpg',
-    desc: 'Real-time system performing photorealistic rendering and localization simultaneously from a single camera.'
+    image: 'assets/Projects/proj-23-01.png',
+    desc: '3차원 디지털미디어를 사용자 미디어 이용 환경과 디바이스 속성을 반영한 최적의 3D 스트리밍 기술 개발.'
   },
   {
-    id: 'ar',
-    title: 'AR Spatial Anchoring',
-    year: '2024',
-    tag: 'AR',
+    id: 'proj-21-01',
+    title: '라이트 필드 기반 실감 미디어 통합 플랫폼 (삼성미래기술육성사업)',
+    year: '2021-2024',
+    tag: 'Immersive Media',
     ongoing: false,
-    image: 'assets/project-ar.jpg',
-    desc: 'Framework for persistent AR content placement and interaction at urban scale.'
+    image: 'assets/Projects/proj-21-01.png',
+    desc: '증강/가상현실(AR·VR) 시스템을 위한 라이트 필드 기반의 시공간 초월 몰입형 미디어 획득 및 처리 기술 연구.'
   }
 ];
 
@@ -903,7 +894,7 @@ const PUBLICATIONS = [
 
 // Which publication IDs to feature on the Home page (in order shown).
 // Curated manually — not "latest". Edit here to change the Home highlights.
-const PUBLICATIONS_HOME_FEATURED = ['sc-omnigs', '360loc', 'volcap-tvcg'];
+const PUBLICATIONS_HOME_FEATURED = ['intl-conf-26-01', 'intl-journal-26-01', 'intl-journal-25-03'];
 
 // Human-readable labels for the 5 publication categories.
 const PUB_CATEGORIES = [
