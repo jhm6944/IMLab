@@ -150,7 +150,7 @@ const PROJECTS = [
     tag: 'Video Processing',
     ongoing: false,
     sponsor: '네이버',
-    image: 'assets/Projects/proj-21-03.jpg',
+    image: 'assets/Projects/proj-21-03.png',
     desc: '모바일 환경에서 취득된 저품질 영상에 대한 전처리기 기술 개발.'
   }  
 ];
