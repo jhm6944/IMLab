@@ -75,7 +75,7 @@ const NEWS = [
 const PROJECTS = [
   {
     id: 'proj-26-02',
-    title: '디지털선도기술핵심인재양성(R&D) AI반도체융합전공 학·석사 연계과정 (서울과학기술대학교)',
+    title: '디지털선도기술핵심인재양성(R&D) AI반도체융합전공 학·석사 연계과정',
     year: '2026-2030',
     tag: 'AI Semiconductor',
     ongoing: true,
@@ -108,6 +108,15 @@ const PROJECTS = [
     ongoing: false,
     image: 'assets/Projects/proj-21-01.png',
     desc: '증강/가상현실(AR·VR) 시스템을 위한 라이트 필드 기반의 시공간 초월 몰입형 미디어 획득 및 처리 기술 연구.'
+  },
+  {
+    id: 'proj-21-02',
+    title: 'Volumetric Media 실시간 스트리밍 SW 개발 (ETRI)',
+    year: '2021-2023',
+    tag: 'Immersive Media',
+    ongoing: false,
+    image: 'assets/Projects/proj-21-02.png',
+    desc: 'Volumetric Media 실시간 스트리밍 SW 개발.'
   }
 ];
 
