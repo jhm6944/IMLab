@@ -104,25 +104,55 @@ const PROJECTS = [
     desc: '3차원 디지털미디어를 사용자 미디어 이용 환경과 디바이스 속성을 반영한 최적의 3D 스트리밍 기술 개발.'
   },
   {
-    id: 'proj-21-01',
-    title: '라이트 필드 기반 실감 미디어 통합 플랫폼',
-    year: '2021-2024',
+    id: 'proj-17-01',
+    title: '대규모 영상으로부터 획득한 라이트필드 기반의 초시공간 360영상 구성 / 라이트 필드 기반 실감 미디어 통합 플랫폼',
+    year: '2017-2024',
     tag: 'Immersive Media',
     ongoing: false,
     sponsor: '삼성미래기술육성사업',
-    image: 'assets/Projects/proj-21-01.png',
+    image: 'assets/Projects/proj-17-01.png',
     desc: '증강/가상현실(AR·VR) 시스템을 위한 라이트 필드 기반의 시공간 초월 몰입형 미디어 획득 및 처리 기술 연구.'
   },
   {
-    id: 'proj-21-02',
+    id: 'proj-21-01',
     title: 'Volumetric Media 실시간 스트리밍 SW 개발',
     year: '2021-2023',
     tag: 'Immersive Media',
     ongoing: false,
     sponsor: '한국전자통신연구원(ETRI)',
-    image: 'assets/Projects/proj-21-02.png',
-    desc: 'Volumetric Media 실시간 스트리밍 SW 개발.'
-  }
+    image: 'assets/Projects/proj-21-01.png',
+    desc: '동적 3D 콘텐츠인 볼류메트릭 미디어의 생성 및 실시간 스트리밍 SW 개발.'
+  },
+  {
+    id: 'proj-20-01',
+    title: '렌즈 조합 최적화 탐색을 위한 AI 알고리즘 개발 / Semantic Edge Detection기반 MLCC 미세구조 Edge 분류 성능 개선',
+    year: '2020-2023',
+    tag: 'AI / Computer Vision',
+    ongoing: false,
+    sponsor: '삼성전기',
+    image: 'assets/Projects/proj-20-01.jpg',
+    desc: '렌즈 및 MLCC 제조 현장에서 요구되는 AI 알고리즘 개발.'
+  },
+  {
+    id: 'proj-21-02',
+    title: '확장형 라이트필드 기반의 자유시점변환 가상현실 시스템 개발',
+    year: '2021-2023',
+    tag: 'Immersive Media',
+    ongoing: false,
+    sponsor: '교육부 · 한국연구재단 (NRF)',
+    image: 'assets/Projects/proj-21-02.jpg',
+    desc: '대규모 공간을 대상으로 자유로운 시점 이동이 가능한 가상현실 시스템의 개발.'
+  },
+  {
+    id: 'proj-21-03',
+    title: '모바일에서 취득한 저품질 영상에 대한 인코딩 친화적인 전처리기 개발',
+    year: '2021',
+    tag: 'Video Processing',
+    ongoing: false,
+    sponsor: '네이버',
+    image: 'assets/Projects/proj-21-03.jpg',
+    desc: '모바일 환경에서 취득된 저품질 영상에 대한 전처리기 기술 개발.'
+  }  
 ];
 
 // ─── PUBLICATIONS ─────────────────────────────────────
