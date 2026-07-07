@@ -365,7 +365,11 @@ function PublicationsPage() {
                     </div>
                     <span className="pp-ref-title">{p.title}</span>
                     <em className="pp-ref-venue">{p.venue}</em>
-                    <span className="pp-ref-tail">, {p.month}, {p.day}, {p.year}.</span>
+                    <span className="pp-ref-tail">
+                      {p.month ? `, ${p.month}` : ''}
+                      {p.day ? ` ${p.day}` : ''}
+                      {`, ${p.year}.`}
+                  </span>
                     {p.tag && (
                       <span className={`pp-ref-badge ${p.tag === 'highlight' ? 'hl' : ''}`}>
                         {p.tag}
