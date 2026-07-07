@@ -208,33 +208,40 @@ function Home() {
         .hm-about-body { font-size: 16px; line-height: 1.7; }
         .hm-about-cta { margin-top: 24px; display: flex; gap: 16px; }
 
-        /* Ongoing research strip — equal 1/3 cells (per request) */
-        .hm-research-strip {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 12px;
-          padding: 8px 0 32px;
+         /* 👇 Research Areas (연구 분야) 스타일 👇 */
+        .hm-areas-grid { 
+          display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; padding: 16px 0 40px; 
         }
-        .hm-research-item { 
-          position: relative; overflow: hidden; border-radius: 2px; display: block; 
-          background: #ffffff; 
+        .hm-area-card {
+          padding: 32px 24px;
+          border: 1px solid rgba(22,23,27,0.12);
+          border-radius: 3px;
+          background: var(--paper);
+          transition: transform 0.3s, box-shadow 0.3s;
+          display: flex; flex-direction: column; gap: 16px;
+        }
+        .hm-area-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 12px 24px rgba(0,0,0,0.05);
+        }
+        .hm-area-icon {
+          width: 48px; height: 48px;
+          border-radius: 50%;
+          background: rgba(27, 54, 93, 0.08); /* accent 색상의 아주 옅은 버전 */
+          color: var(--accent);
           display: flex; align-items: center; justify-content: center;
-          border: 1px solid rgba(22,23,27,0.08);
+          margin-bottom: 8px;
         }
-        .hm-research-item img { 
-          width: 100%; height: 100%; 
-          object-fit: contain; 
-          transition: transform 0.6s, filter 0.6s; filter: saturate(1) brightness(1); 
+        .hm-area-icon svg { width: 24px; height: 24px; stroke-width: 1.5px; }
+        
+        .hm-area-title {
+          font-family: 'Fraunces', serif;
+          font-size: 24px; font-weight: 400; letter-spacing: -0.015em;
+          margin: 0; line-height: 1.2;
         }
-        .hm-research-item:hover img { transform: scale(1.04); filter: saturate(1) brightness(1); }
-        .hm-research-caption {
-          position: absolute; inset: 0; padding: 20px;
-          display: flex; flex-direction: column; justify-content: flex-end;
-          background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.78) 100%);
-          color: var(--paper);
+        .hm-area-desc {
+          font-size: 14.5px; line-height: 1.6; color: var(--muted); margin: 0;
         }
-        .hm-research-caption .tag { color: rgba(246,244,239,0.7); margin-bottom: 6px; }
-        .hm-research-caption .t { font-family: 'Fraunces', serif; font-size: 20px; letter-spacing: -0.015em; margin: 0; font-weight: 400; line-height: 1.15; }
 
         @media (max-width: 900px) {
           .hm-hero-grid { grid-template-columns: 1fr; }
@@ -375,23 +382,64 @@ function Home() {
         </div>
       </section>
 
-      {/* Ongoing Research — three equal 1/3 cells */}
-      <section className="im-section" data-screen-label="Research Preview">
+      {/* Research Areas (연구 분야) */}
+      <section className="im-section" data-screen-label="Research Areas">
         <div className="im-section-head">
-          <span className="im-mono im-section-mono">§ 03 — Ongoing Research</span>
-          <h2 className="im-section-title">Ongoing <em>research</em></h2>
-          <a className="im-section-link" href="research.html">All projects →</a>
+          <div className="im-mono im-section-mono">§ 04 — Research</div>
+          <h2 className="im-section-title">Core <em>research areas</em></h2>
+          <a className="im-section-link" href="research.html">View projects →</a>
         </div>
-        <div className="hm-research-strip">
-          {projects.map((p) => (
-            <a key={p.id} className="hm-research-item" href="research.html">
-              <img src={p.image} alt={p.title} />
-              <div className="hm-research-caption">
-                <span className="im-mono tag">{p.tag} · {p.year}</span>
-                <h3 className="t">{p.title}</h3>
-              </div>
-            </a>
-          ))}
+        
+        <div className="hm-areas-grid">
+          
+          {/* 주제 1: 3D 재구성 & 비전 */}
+          <div className="hm-area-card">
+            <div className="hm-area-icon">
+              {/* 카메라/렌즈 느낌의 아이콘 */}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <circle cx="12" cy="12" r="10"></circle>
+                <circle cx="12" cy="12" r="4"></circle>
+                <line x1="21.17" y1="8" x2="12" y2="8"></line>
+                <line x1="3.95" y1="6.06" x2="8.54" y2="14"></line>
+                <line x1="10.88" y1="21.94" x2="15.46" y2="14"></line>
+              </svg>
+            </div>
+            <h3 className="hm-area-title">3D Vision &<br/>Reconstruction</h3>
+            <p className="hm-area-desc">
+              단일/다중 카메라 및 360도 영상을 활용하여 물리적 세계를 정밀하게 디지털 공간으로 복제하고 재구성하는 기술을 연구합니다.
+            </p>
+          </div>
+
+          {/* 주제 2: 뉴럴 렌더링 */}
+          <div className="hm-area-card">
+            <div className="hm-area-icon">
+              {/* 레이어/렌더링 느낌의 아이콘 */}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                <polyline points="2 12 12 17 22 12"></polyline>
+                <polyline points="2 17 12 22 22 17"></polyline>
+              </svg>
+            </div>
+            <h3 className="hm-area-title">Neural Rendering &<br/>Light Fields</h3>
+            <p className="hm-area-desc">
+              NeRF, Gaussian Splatting 등 최신 AI 기술을 결합하여 시공간을 초월한 고품질의 자유 시점(Free-viewpoint) 뷰 합성 기술을 연구합니다.
+            </p>
+          </div>
+
+          {/* 주제 3: AR/VR 응용 */}
+          <div className="hm-area-card">
+            <div className="hm-area-icon">
+              {/* 확장현실(XR)/안경 느낌의 아이콘 */}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M2 12h4l3-9 5 18 3-9h5"></path>
+              </svg>
+            </div>
+            <h3 className="hm-area-title">Immersive Media &<br/>XR Systems</h3>
+            <p className="hm-area-desc">
+              가상과 현실을 잇는 지속 가능하고 몰입감 넘치는 메타버스 콘텐츠 처리 시스템 및 인간 중심의 상호작용 인터페이스를 연구합니다.
+            </p>
+          </div>
+
         </div>
       </section>
 
