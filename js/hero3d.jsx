@@ -237,7 +237,7 @@ function Hero3D({ style = 'points', accent = '#4a7fbc', bg = 'transparent', auto
   }, [style, accent, bg, autoRotate]);
 
   return (
-    <div ref={mountRef} className={className} style={{ width: '100%', height: '100%', touchAction: 'none' }} />
+    <div ref={mountRef} className={className} style={{ width: '100%', height: '340px', minHeight: '340px', maxHeight: '340px', touchAction: 'none' }} />
   );
 }
 
