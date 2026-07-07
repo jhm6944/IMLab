@@ -133,7 +133,8 @@ const PUBLICATIONS = [
     month: 'Feb.', 
     year: '2026',
     paper: 'https://doi.org/10.1016/j.imavis.2025.105867',
-    image: ''
+    code: 'https://github.com/GSKIM13/CONXA/',
+    image: 'assets/Publications/intl-journal-26-01.png'
   },
   {
     id: 'intl-journal-25-03',
@@ -144,7 +145,7 @@ const PUBLICATIONS = [
     month: 'Oct.', 
     year: '2025',
     paper: 'https://doi.org/10.1109/MMUL.2025.3615162',
-    image: ''
+    image: 'assets/Publications/intl-journal-25-03.png'
   },
   {
     id: 'intl-journal-25-02',
@@ -155,7 +156,7 @@ const PUBLICATIONS = [
     month: 'June', 
     year: '2025',
     paper: 'https://doi.org/10.1109/MMUL.2025.3581588',
-    image: ''
+    image: 'assets/Publications/intl-journal-25-02.png'
   },
   {
     id: 'intl-journal-25-01',
@@ -166,7 +167,7 @@ const PUBLICATIONS = [
     month: 'May', 
     year: '2025',
     paper: 'https://doi.org/10.1587/elex.22.20250141',
-    image: ''
+    image: 'assets/Publications/intl-journal-25-01.png'
   },
   {
     id: 'intl-journal-23-02',
@@ -177,7 +178,7 @@ const PUBLICATIONS = [
     month: 'May', 
     year: '2023',
     paper: 'https://doi.org/10.1109/ACCESS.2023.3279726',
-    image: ''
+    image: 'assets/Publications/intl-journal-23-02.png'
   },
   {
     id: 'intl-journal-23-01',
@@ -188,7 +189,7 @@ const PUBLICATIONS = [
     month: 'Apr.', 
     year: '2023',
     paper: 'https://doi.org/10.1109/ACCESS.2023.3267768',
-    image: ''
+    image: 'assets/Publications/intl-journal-23-01.png'
   },
   {
     id: 'intl-journal-22-01',
@@ -199,7 +200,7 @@ const PUBLICATIONS = [
     month: 'June', 
     year: '2022',
     paper: 'https://doi.org/10.1109/TCSVT.2021.3121010',
-    image: ''
+    image: 'assets/Publications/intl-journal-22-01.png'
   },
   {
     id: 'intl-journal-20-02',
@@ -210,7 +211,7 @@ const PUBLICATIONS = [
     month: 'Oct.', 
     year: '2020',
     paper: 'https://doi.org/10.5573/IEIESPC.2020.9.5.413',
-    image: ''
+    image: 'assets/Publications/intl-journal-20-02.png'
   },
   {
     id: 'intl-journal-20-01',
@@ -221,7 +222,7 @@ const PUBLICATIONS = [
     month: 'Apr.', 
     year: '2020',
     paper: 'https://doi.org/10.1109/TMM.2019.2934819',
-    image: ''
+    image: 'assets/Publications/intl-journal-20-01.png'
   },
   {
     id: 'intl-journal-19-02',
@@ -255,7 +256,7 @@ const PUBLICATIONS = [
     year: '2026',
     // paper: '10.1109/ICCE63647.2025.10929914',
     // code: 'https://github.com/jhm6944/360loc',
-    // image: 'assets/Publications/intl-conf-25-01.png'
+    image: 'assets/Publications/intl-conf-26-01.png'
   },
   {
     id: 'intl-conf-25-01',
@@ -288,7 +289,7 @@ const PUBLICATIONS = [
     month: 'May', 
     year: '2023',
     paper: 'https://doi.org/10.1109/ISCAS46773.2023.10182003',
-    image: ''
+    image: 'assets/Publications/intl-conf-23-01.png'
   },
   {
     id: 'intl-conf-22-03',
