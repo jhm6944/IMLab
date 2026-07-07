@@ -14,6 +14,14 @@
   <style>
     html, body { margin: 0; padding: 0; background: #f6f4ef; }
     #root { min-height: 100vh; }
+
+    body {
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+    body.fonts-loaded {
+      opacity: 1;
+    }
   </style>
 </head>
 <body>
@@ -32,6 +40,13 @@
     ReactDOM.createRoot(document.getElementById('root')).render(
       <Shell active="home"><Home /></Shell>
     );
+  </script>
+
+  <script>
+    // 문서의 폰트들이 모두 로드되면 body에 'fonts-loaded' 클래스를 추가하여 화면을 띄움
+    document.fonts.ready.then(function() {
+      document.body.classList.add('fonts-loaded');
+    });
   </script>
 </body>
 </html>
