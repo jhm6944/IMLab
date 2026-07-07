@@ -385,8 +385,8 @@ function Home() {
       {/* Research Areas (연구 분야) */}
       <section className="im-section" data-screen-label="Research Areas">
         <div className="im-section-head">
-          <div className="im-mono im-section-mono">§ 04 — Research</div>
-          <h2 className="im-section-title">Core <em>research areas</em></h2>
+          <div className="im-mono im-section-mono">§ 03 — Research</div>
+          <h2 className="im-section-title">Research <em> areas</em></h2>
           <a className="im-section-link" href="research.html">View projects →</a>
         </div>
         

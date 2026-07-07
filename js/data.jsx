@@ -79,6 +79,7 @@ const PROJECTS = [
     year: '2026-2030',
     tag: 'AI Semiconductor',
     ongoing: true,
+    sponsor: '한국연구재단 (NRF)',
     image: 'assets/Projects/proj-26-02.png',
     desc: '학부와 석사 과정을 통합하여 현장에 즉시 투입 가능한 인공지능 반도체 고급 인재 양성 프로그램.'
   },
@@ -88,6 +89,7 @@ const PROJECTS = [
     year: '2026-2029',
     tag: 'Immersive Media',
     ongoing: true,
+    sponsor: '정보통신기획평가원 (IITP)',
     image: 'assets/Projects/proj-26-01.png',
     desc: '라이트필드 디스플레이를 위한 대규모/대용량 라이트필드 데이터의 실시간 고정밀-고효율-고속 라이트필드 처리 프레임워크 개발.'
   },
@@ -97,24 +99,27 @@ const PROJECTS = [
     year: '2023-2025',
     tag: '3D Media Streaming',
     ongoing: false,
+    sponsor: '정보통신기획평가원 (IITP)',
     image: 'assets/Projects/proj-23-01.png',
     desc: '3차원 디지털미디어를 사용자 미디어 이용 환경과 디바이스 속성을 반영한 최적의 3D 스트리밍 기술 개발.'
   },
   {
     id: 'proj-21-01',
-    title: '라이트 필드 기반 실감 미디어 통합 플랫폼 (삼성미래기술육성사업)',
+    title: '라이트 필드 기반 실감 미디어 통합 플랫폼',
     year: '2021-2024',
     tag: 'Immersive Media',
     ongoing: false,
+    sponsor: '삼성미래기술육성사업',
     image: 'assets/Projects/proj-21-01.png',
     desc: '증강/가상현실(AR·VR) 시스템을 위한 라이트 필드 기반의 시공간 초월 몰입형 미디어 획득 및 처리 기술 연구.'
   },
   {
     id: 'proj-21-02',
-    title: 'Volumetric Media 실시간 스트리밍 SW 개발 (ETRI)',
+    title: 'Volumetric Media 실시간 스트리밍 SW 개발',
     year: '2021-2023',
     tag: 'Immersive Media',
     ongoing: false,
+    sponsor: '한국전자통신연구원(ETRI)',
     image: 'assets/Projects/proj-21-02.png',
     desc: 'Volumetric Media 실시간 스트리밍 SW 개발.'
   }
