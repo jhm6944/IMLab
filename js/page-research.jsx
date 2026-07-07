@@ -20,11 +20,17 @@ function ResearchPage() {
         .rp-thumb {
           aspect-ratio: 4/3;
           overflow: hidden;
-          background: #111;
+          background: #ffffff; /* 배경을 완전히 흰색으로 변경 */
           border-radius: 2px;
+          display: flex; /* 이미지를 중앙에 띄우기 위한 설정 */
+          align-items: center;
+          justify-content: center;
+          border: 1px solid rgba(22,23,27,0.05); /* 흰 배경이 너무 밋밋하지 않게 아주 연한 테두리 추가 (선택사항) */
         }
         .rp-thumb img {
-          width: 100%; height: 100%; object-fit: cover;
+          width: 100%; 
+          height: 100%; 
+          object-fit: contain; /* cover에서 contain으로 변경: 이미지가 잘리지 않고 가로세로 비율에 맞춰 다 들어감 */
           filter: saturate(0.9);
           transition: transform 0.6s;
         }

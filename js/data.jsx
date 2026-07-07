@@ -255,7 +255,7 @@ const PUBLICATIONS = [
     month: 'Sep.', 
     year: '2026',
     // paper: '10.1109/ICCE63647.2025.10929914',
-    // code: 'https://github.com/jhm6944/360loc',
+    code: 'https://github.com/Ingyu-Jeong/EGGS',
     image: 'assets/Publications/intl-conf-26-01.png'
   },
   {
