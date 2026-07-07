@@ -43,7 +43,7 @@ function Home() {
         .hm-issue-line .right { color: var(--ink); }
         .hm-hero-grid { 
           display: grid; grid-template-columns: 1.4fr 1fr; gap: 56px; align-items: stretch; 
-          min-height: 340px; /* 기존 420px에서 340px로 축소하여 고정 */
+          height: 340px; 
         }        
         .hm-hero-copy { display: flex; flex-direction: column; justify-content: center; }
         .hm-hero-title {
@@ -61,8 +61,7 @@ function Home() {
           background: linear-gradient(180deg, #10121a 0%, #050810 100%);
           border-radius: 4px;
           overflow: hidden;
-          height: 100%; /* 부모 그리드의 높이에 완전히 꽉 맞추도록 변경 */
-          min-height: 340px; /* 작은 크기 기준으로 최소 높이 강제 고정 */
+          height: 100%; 
         }
         .hm-hero-3d-label {
           position: absolute; top: 16px; left: 16px; z-index: 2;
