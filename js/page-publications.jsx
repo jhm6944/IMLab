@@ -173,7 +173,7 @@ function PublicationsPage() {
         .pp-ref-thumb img {
           width: 100%; height: 100%;
           object-fit: contain; /* 이미지가 잘리지 않고 꽉 차게 들어가도록 contain 사용 */
-          filter: saturate(0.85) brightness(0.95);
+          filter: saturate(1) brightness(1);
           transition: transform 0.6s, filter 0.6s;
         }
         .pp-ref:hover .pp-ref-thumb img {

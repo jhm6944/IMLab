@@ -31,7 +31,7 @@ function ResearchPage() {
           width: 100%; 
           height: 100%; 
           object-fit: contain; /* cover에서 contain으로 변경: 이미지가 잘리지 않고 가로세로 비율에 맞춰 다 들어감 */
-          filter: saturate(0.9);
+          filter: saturate(1);
           transition: transform 0.6s;
         }
         .rp-item:hover .rp-thumb img { transform: scale(1.03); filter: saturate(1); }

@@ -145,7 +145,7 @@ function Home() {
         .hm-pub-thumb img { 
           width: 100%; height: 100%; 
           object-fit: contain; 
-          filter: saturate(0.85) brightness(0.95); transition: transform 0.6s; 
+          filter: saturate(1) brightness(1); transition: transform 0.6s; 
         }
         .hm-pub-card:hover .hm-pub-thumb img { transform: scale(1.04); filter: saturate(1) brightness(1); }
         .hm-pub-badge {
@@ -224,7 +224,7 @@ function Home() {
         .hm-research-item img { 
           width: 100%; height: 100%; 
           object-fit: contain; 
-          transition: transform 0.6s, filter 0.6s; filter: saturate(0.85) brightness(0.95); 
+          transition: transform 0.6s, filter 0.6s; filter: saturate(1) brightness(1); 
         }
         .hm-research-item:hover img { transform: scale(1.04); filter: saturate(1) brightness(1); }
         .hm-research-caption {
