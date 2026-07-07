@@ -14,7 +14,8 @@ function Hero3D({ style = 'points', accent = '#4a7fbc', bg = 'transparent', auto
     if (!mount) return;
 
     const w = mount.clientWidth;
-    const h = mount.clientHeight;
+    // const h = mount.clientHeight;
+    const h = 340; 
 
     const scene = new THREE.Scene();
     if (bg !== 'transparent') scene.background = new THREE.Color(bg);
@@ -212,7 +213,8 @@ function Hero3D({ style = 'points', accent = '#4a7fbc', bg = 'transparent', auto
 
     const onResize = () => {
       const nw = mount.clientWidth;
-      const nh = mount.clientHeight;
+      // const nh = mount.clientHeight;
+      const nh = 340;
       camera.aspect = nw / nh;
       camera.updateProjectionMatrix();
       renderer.setSize(nw, nh);
