@@ -61,7 +61,8 @@ function Home() {
           background: linear-gradient(180deg, #10121a 0%, #050810 100%);
           border-radius: 4px;
           overflow: hidden;
-          height: 100%; 
+          height: 340px; /* 100% 대신 명시적으로 340px 고정 */
+          min-height: 340px; /* 처음부터 무조건 340px로 렌더링되게 강제 */
         }
         .hm-hero-3d-label {
           position: absolute; top: 16px; left: 16px; z-index: 2;
