@@ -136,8 +136,17 @@ function Home() {
           transition: border-color 0.2s, transform 0.3s;
         }
         .hm-pub-card:hover { border-color: rgba(22,23,27,0.35); transform: translateY(-2px); }
-        .hm-pub-thumb { aspect-ratio: 16/10; overflow: hidden; background: #111; position: relative; }
-        .hm-pub-thumb img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.85) brightness(0.95); transition: transform 0.6s; }
+        .hm-pub-thumb { 
+          aspect-ratio: 16/10; overflow: hidden; position: relative;
+          background: #ffffff;
+          display: flex; align-items: center; justify-content: center;
+          border-bottom: 1px solid rgba(22,23,27,0.05); /* 카드 내용과 분리선 역할 */
+        }
+        .hm-pub-thumb img { 
+          width: 100%; height: 100%; 
+          object-fit: contain; 
+          filter: saturate(0.85) brightness(0.95); transition: transform 0.6s; 
+        }
         .hm-pub-card:hover .hm-pub-thumb img { transform: scale(1.04); filter: saturate(1) brightness(1); }
         .hm-pub-badge {
           position: absolute; top: 12px; left: 12px;
@@ -206,15 +215,17 @@ function Home() {
           gap: 12px;
           padding: 8px 0 32px;
         }
-        .hm-research-item {
-          position: relative;
-          overflow: hidden;
-          background: #111;
-          border-radius: 2px;
-          display: block;
-          aspect-ratio: 4/3;
+        .hm-research-item { 
+          position: relative; overflow: hidden; border-radius: 2px; display: block; 
+          background: #ffffff; 
+          display: flex; align-items: center; justify-content: center;
+          border: 1px solid rgba(22,23,27,0.08);
         }
-        .hm-research-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s, filter 0.6s; filter: saturate(0.85) brightness(0.95); }
+        .hm-research-item img { 
+          width: 100%; height: 100%; 
+          object-fit: contain; 
+          transition: transform 0.6s, filter 0.6s; filter: saturate(0.85) brightness(0.95); 
+        }
         .hm-research-item:hover img { transform: scale(1.04); filter: saturate(1) brightness(1); }
         .hm-research-caption {
           position: absolute; inset: 0; padding: 20px;
