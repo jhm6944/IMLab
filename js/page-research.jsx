@@ -91,6 +91,26 @@ function ResearchPage() {
           margin: 0;
           max-width: 65ch;
         }
+        .rp-sponsor {
+          margin-top: 12px;
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 6px 12px;
+          background: rgba(22,23,27,0.03); /* 아주 옅은 회색 배경 */
+          border-left: 2px solid var(--accent); /* 왼쪽 악센트 바 */
+          border-radius: 0 2px 2px 0;
+          font-size: 12.5px;
+          color: var(--muted);
+        }
+        .rp-sponsor strong {
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 10px;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          color: var(--ink);
+          font-weight: 500;
+        }
 
         @media (max-width: 820px) {
           .rp-item { grid-template-columns: 1fr; gap: 12px; }
@@ -128,6 +148,11 @@ function ResearchPage() {
                 </div>
                 <h3 className="rp-title">{p.title}</h3>
                 <p className="rp-desc">{p.desc}</p>
+                {p.sponsor && (
+                  <div className="rp-sponsor">
+                    <strong>Supported by</strong> {p.sponsor}
+                  </div>
+                )}
               </div>
             </article>
           ))}
