@@ -230,15 +230,23 @@ function Home() {
           transform: translateY(-4px);
           box-shadow: 0 12px 24px rgba(0,0,0,0.05);
         }
-        .hm-area-icon {
-          width: 48px; height: 48px;
-          border-radius: 50%;
-          background: rgba(27, 54, 93, 0.08); /* accent 색상의 아주 옅은 버전 */
-          color: var(--accent);
-          display: flex; align-items: center; justify-content: center;
-          margin-bottom: 8px;
+        .hm-area-thumb {
+          width: 100%;
+          aspect-ratio: 16/10;
+          border-radius: 2px;
+          background: #ffffff;
+          overflow: hidden;
+          margin-bottom: 12px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 1px solid rgba(22,23,27,0.05);
         }
-        .hm-area-icon svg { width: 24px; height: 24px; stroke-width: 1.5px; }
+        .hm-area-thumb img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain; /* 이미지가 잘리지 않게 설정 */
+        }
         
         .hm-area-title {
           font-family: 'Fraunces', serif;
@@ -402,15 +410,9 @@ function Home() {
           
           {/* 주제 1: 3D 재구성 & 비전 */}
           <div className="hm-area-card">
-            <div className="hm-area-icon">
-              {/* 카메라/렌즈 느낌의 아이콘 */}
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <circle cx="12" cy="12" r="10"></circle>
-                <circle cx="12" cy="12" r="4"></circle>
-                <line x1="21.17" y1="8" x2="12" y2="8"></line>
-                <line x1="3.95" y1="6.06" x2="8.54" y2="14"></line>
-                <line x1="10.88" y1="21.94" x2="15.46" y2="14"></line>
-              </svg>
+            {/* 👇 수정된 부분 👇 */}
+            <div className="hm-area-thumb">
+              <img src="assets/project-slam.jpg" alt="3D Vision & Reconstruction" />
             </div>
             <h3 className="hm-area-title">3D Vision &<br/>Reconstruction</h3>
             <p className="hm-area-desc">
@@ -420,13 +422,9 @@ function Home() {
 
           {/* 주제 2: 뉴럴 렌더링 */}
           <div className="hm-area-card">
-            <div className="hm-area-icon">
-              {/* 레이어/렌더링 느낌의 아이콘 */}
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                <polyline points="2 12 12 17 22 12"></polyline>
-                <polyline points="2 17 12 22 22 17"></polyline>
-              </svg>
+            {/* 👇 수정된 부분 👇 */}
+            <div className="hm-area-thumb">
+              <img src="assets/project-gaussian.jpg" alt="Neural Rendering & Light Fields" />
             </div>
             <h3 className="hm-area-title">Neural Rendering &<br/>Light Fields</h3>
             <p className="hm-area-desc">
@@ -436,11 +434,9 @@ function Home() {
 
           {/* 주제 3: AR/VR 응용 */}
           <div className="hm-area-card">
-            <div className="hm-area-icon">
-              {/* 확장현실(XR)/안경 느낌의 아이콘 */}
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M2 12h4l3-9 5 18 3-9h5"></path>
-              </svg>
+            {/* 👇 수정된 부분 👇 */}
+            <div className="hm-area-thumb">
+              <img src="assets/project-ar.jpg" alt="Immersive Media & XR Systems" />
             </div>
             <h3 className="hm-area-title">Immersive Media &<br/>XR Systems</h3>
             <p className="hm-area-desc">
