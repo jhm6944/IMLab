@@ -36,16 +36,34 @@
   <script type="text/babel" src="js/shell.jsx"></script>
   <script type="text/babel" src="js/hero3d.jsx"></script>
   <script type="text/babel" src="js/home.jsx"></script>
+  
   <script type="text/babel">
-    ReactDOM.createRoot(document.getElementById('root')).render(
-      <Shell active="home"><Home /></Shell>
-    );
+    const App = () => {
+      React.useEffect(() => {
+        // 화면을 다 그렸다는 커스텀 이벤트를 발생시킵니다.
+        window.dispatchEvent(new Event('react-rendered'));
+      }, []);
+      return <Shell active="home"><Home /></Shell>;
+    };
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
   </script>
 
   <script>
-    // 문서의 폰트들이 모두 로드되면 body에 'fonts-loaded' 클래스를 추가하여 화면을 띄움
-    document.fonts.ready.then(function() {
-      document.body.classList.add('fonts-loaded');
+    // 1. 폰트 로딩이 끝나는 것을 기다립니다.
+    const fontsReady = document.fonts.ready;
+    
+    // 2. React가 화면을 다 그렸다는 신호(이벤트)를 기다립니다.
+    const reactReady = new Promise(resolve => {
+      window.addEventListener('react-rendered', resolve, { once: true });
+    });
+
+    // 3. 폰트 로딩과 React 렌더링 두 가지가 모두 완벽하게 끝나면 비로소 화면을 띄웁니다!
+    Promise.all([fontsReady, reactReady]).then(() => {
+      // 아주 미세한 CSS 계산 시간을 벌어주기 위해 0.05초(50ms) 정도만 뜸을 들입니다.
+      setTimeout(() => {
+        document.body.classList.add('fonts-loaded');
+      }, 50);
     });
   </script>
 </body>
