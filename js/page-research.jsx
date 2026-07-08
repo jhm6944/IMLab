@@ -122,7 +122,7 @@ function ResearchPage() {
       <section className="im-section" data-screen-label="Research Header">
         <div className="im-page-header">
           <div className="breadcrumb im-mono">Home / Research</div>
-          <h1>Ongoing <em>research</em></h1>
+          <h1>Research <em>Projects</em></h1>
           <p className="sub">
             We study the next generation of immersive media across three axes —
             spatial reconstruction, perceptual extension, and experience design.

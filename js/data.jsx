@@ -968,7 +968,7 @@ const MEMBERS = [
   { name: '박인수', nameEn: 'Insu Park', role: 'B.S. Student', initial: 'I. Park',
     interests: ['Gaussian Splatting', 'Generalizable GS, Light Field Display'] },
   { name: '이예빈', nameEn: 'Yebin Lee', role: 'B.S. Student', initial: 'Y. Lee',
-    interests: ['Implicit Neural Representation', 'Omnidirectional Rendering', 'Virtual Reality'] },
+    interests: ['Implicit Neural Representation', 'Omnidirectional Rendering'] },
   { name: '권준용', nameEn: 'Junyong Kwon', role: 'B.S. Student', initial: 'J. Kwon',
     interests: ['Implicit Neural Representation', 'Neural Light Field'] },
   { name: '김도연', nameEn: 'Doyeon Kim', role: 'B.S. Student', initial: 'D. Kim',

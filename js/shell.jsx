@@ -99,7 +99,7 @@ function ShellStyles() {
         margin: 0 0 12px;
       }
       .im-page-header h1 em { font-style: italic; color: var(--accent); font-weight: 300; }
-      .im-page-header .sub { color: var(--muted); font-size: 15px; max-width: 60ch; }
+      .im-page-header .sub { color: var(--muted); font-size: 15px; max-width: 70ch; }
 
       /* FOOTER */
       .im-footer { padding: 80px 0 48px; border-top: 1px solid rgba(22,23,27,0.15); margin-top: 100px; }

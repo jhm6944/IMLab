@@ -18,7 +18,7 @@ function ContactPage() {
         .cp-row dd { margin: 0; }
 
         .cp-cta {
-          margin-top: 32px;
+          margin-top: 50px;
           padding: 28px 32px; background: var(--ink); color: var(--paper); border-radius: 2px;
           display: flex; justify-content: space-between; align-items: center; gap: 16px;
           text-decoration: none;
@@ -46,8 +46,7 @@ function ContactPage() {
           <div className="breadcrumb im-mono">Home / Contact</div>
           <h1><em>Contact</em></h1>
           <p className="sub">
-            For collaborations, visits, graduate applications, or press inquiries,
-            please reach out by email.
+            For collaborations, visits, lab applications, or general inquiries, please reach out by email.
           </p>
         </div>
       </section>
@@ -69,14 +68,15 @@ function ContactPage() {
             <p className="cp-note">
               We welcome graduate and undergraduate intern applications year-round.
               Please email your research interests, CV, and transcript.
-              You should hear back within a week.
+              We look forward to hearing from you and exploring potential collaborations.
             </p>
+            {/*
             <ul className="cp-list">
               <li><span className="im-mono num">01</span><span>Attach CV, transcript, and a 1-page statement of research interests</span></li>
               <li><span className="im-mono num">02</span><span>Use the subject line prefix <code>[Application]</code></span></li>
               <li><span className="im-mono num">03</span><span>Selected candidates are invited for a video or in-person interview</span></li>
             </ul>
-
+            */}
             <a className="cp-cta" href={`mailto:${info.email}`}>
               <div>
                 <div className="im-mono label">WRITE TO</div>

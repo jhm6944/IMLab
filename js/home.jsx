@@ -188,7 +188,7 @@ function Home() {
         .hm-recruit-mono { color: rgba(246,244,239,0.55); margin-bottom: 16px; }
         .hm-recruit-title { font-family: 'Fraunces', serif; font-weight: 400; font-size: clamp(28px, 3.4vw, 40px); line-height: 1.1; letter-spacing: -0.02em; margin: 0 0 12px; }
         .hm-recruit-title em { font-style: italic; color: #a9c5ea; font-weight: 300; }
-        .hm-recruit-lead { color: rgba(246,244,239,0.75); font-size: 15px; line-height: 1.6; margin: 0 0 20px; max-width: 46ch; }
+        .hm-recruit-lead { color: rgba(246,244,239,0.75); font-size: 15px; line-height: 1.6; margin: 0 0 20px; max-width: 55ch; }
         .hm-recruit-cta {
           display: inline-flex; align-items: center; gap: 10px;
           padding: 12px 20px; background: var(--paper); color: var(--ink); text-decoration: none;
@@ -278,7 +278,7 @@ function Home() {
       <section className="im-section hm-hero" data-screen-label="Hero">
         <div className="hm-issue-line">
           <span className="right">Immersive Media Lab · IMMEDIA</span>
-          <span>{info.affiliationEn} · {info.departmentEn}</span>
+          <span>SEOULTECH · {info.departmentEn}</span>
         </div>
 
         <div className="hm-hero-grid">
@@ -288,9 +288,9 @@ function Home() {
               <br />meets computation.
             </h1>
             <p className="hm-hero-lead">
-              VR · AR · XR, 3D reconstruction, and neural rendering. We study
-              immersive media at the intersection of human perception and
-              machine understanding.
+              Focusing on VR/AR/XR, 3D reconstruction, and neural rendering, 
+              we study immersive media at the intersection of human perception 
+              and machine understanding.
             </p>
             <div className="hm-hero-meta">
               <a className="im-cta" href="research.html">
@@ -354,7 +354,7 @@ function Home() {
       {/* Latest News */}
       <section className="im-section" data-screen-label="Latest News">
         <div className="im-section-head">
-          <span className="im-mono im-section-mono">§ 01 — Latest News</span>
+          <span className="im-mono im-section-mono">§ 01 — UPDATES</span>
           <h2 className="im-section-title">Latest <em>news</em></h2>
           <a className="im-section-link" href="news.html">All news →</a>
         </div>
@@ -405,7 +405,7 @@ function Home() {
       {/* Research Areas (연구 분야) */}
       <section className="im-section" data-screen-label="Research Areas">
         <div className="im-section-head">
-          <div className="im-mono im-section-mono">§ 03 — Research</div>
+          <div className="im-mono im-section-mono">§ 03 — FOCUS</div>
           <h2 className="im-section-title">Research <em> areas</em></h2>
           <a className="im-section-link" href="research.html">View projects →</a>
         </div>
@@ -457,7 +457,8 @@ function Home() {
           <div>
             <div className="hm-recruit-mono im-mono">■ Recruiting</div>
             <h3 className="hm-recruit-title">
-              Looking for graduate students to <em>build</em> immersive media with us.
+              Looking for passionate <em>talents</em> to build<br/>
+              immersive media with us.
             </h3>
             <p className="hm-recruit-lead">
               We welcome students interested in computer vision, 3D graphics,
