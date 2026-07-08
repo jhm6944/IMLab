@@ -234,18 +234,22 @@ function Home() {
           width: 100%;
           aspect-ratio: 16/10;
           border-radius: 2px;
-          background: #ffffff;
+          background: #111; /* 사진이 꽉 차므로 배경색은 크게 중요하지 않으나, 로딩 시 어두운 톤을 줍니다 */
           overflow: hidden;
-          margin-bottom: 12px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          border: 1px solid rgba(22,23,27,0.05);
+          margin-bottom: 16px; /* 이미지와 제목 사이 간격을 살짝 넓힘 */
+          position: relative;
         }
         .hm-area-thumb img {
           width: 100%;
           height: 100%;
-          object-fit: contain; /* 이미지가 잘리지 않게 설정 */
+          object-fit: cover; /* 👈 다시 cover로 변경하여 카드를 꽉 채움! */
+          filter: saturate(0.9) brightness(0.95); /* 사진이 너무 튀지 않게 아주 살짝 톤다운 (선택사항) */
+          transition: transform 0.6s;
+        }
+        /* 마우스 올렸을 때 이미지가 살짝 커지는 효과 추가 (선택사항) */
+        .hm-area-card:hover .hm-area-thumb img {
+          transform: scale(1.05);
+          filter: saturate(1) brightness(1);
         }
         
         .hm-area-title {
