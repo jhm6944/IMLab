@@ -29,45 +29,125 @@ const LAB_INFO = {
 // ─── NEWS (bilingual titles allowed) ─────────────────────
 const NEWS = [
   {
-    date: '2026.06.24',
-    tag: 'Publication',
-    title: 'Three papers accepted to SIGGRAPH Asia 2026',
-    titleKo: '연구실 논문 3편이 SIGGRAPH Asia 2026에 채택되었습니다',
-    excerpt: 'Three papers on immersive 3D reconstruction and view synthesis have been accepted to the SIGGRAPH Asia 2026 technical papers track.',
-    image: 'assets/news-lab.jpg'
+    date: '2026.06.20',
+    tag: ['Publication'],
+    title: 'Paper accepted to ECCV 2026',
+    titleKo: '정인규 석사과정 연구원의 논문이 ECCV 2026에 채택되었습니다',
+    excerpt: '정인규 연구원(M.S.)의 3D 가우시안 스플래팅 관련 논문 "EGGS: Explicitly Granular 3D Gaussian Splatting via Luma-Aware and Volume-Preserving Attribute Factorization"이 컴퓨터 비전 분야 세계 최고 권위의 국제 학술대회인 ECCV 2026에 최종 채택되었습니다.',
+    image: 'assets/News/ECCV_2026.png' 
   },
   {
-    date: '2026.05.12',
-    tag: 'Award',
-    title: 'Student receives ICCV 2026 Best Student Paper Honorable Mention',
-    titleKo: '박OO 학생, ICCV 2026 Best Student Paper Honorable Mention 수상',
-    excerpt: 'The lab received a Best Student Paper Honorable Mention at ICCV 2026 for work on 360° omnidirectional SLAM.',
-    image: 'assets/news-volcap.jpg'
+    date: '2026.06.20',
+    tag: ['Conference'],
+    title: 'Undergraduate researchers presented at KIBME Summer Conference 2026',
+    titleKo: '학부연구생 4인, 2026 한국방송미디어공학회 하계학술대회 참가 및 논문 발표',
+    excerpt: '우리 연구실 소속 학부연구생 강유진, 박문선, 박인수, 이예빈 학생이 제주도에서 개최된 2026년 한국방송미디어공학회 하계학술대회에 참석하여 그동안의 우수한 연구 성과를 성공적으로 발표하였습니다.',
+    image: 'assets/News/방미공_26하계.png' 
   },
   {
-    date: '2026.03.02',
-    tag: 'Recruit',
-    title: 'Recruiting graduate students for Fall 2026',
-    titleKo: '2026학년도 후기 대학원생을 모집합니다',
-    excerpt: 'We are recruiting new MS, PhD, and integrated MS/PhD students. Students interested in computer vision, 3D graphics, and XR are welcome.',
-    image: 'assets/news-lab.jpg'
+    date: '2026.03.17',
+    tag: ['Grant'],
+    title: 'Selected for the 2026 NRF Outstanding Young Scientist Grant',
+    titleKo: '2026년 과학기술정보통신부 개인기초연구사업(우수신진연구) 신규과제 선정',
+    excerpt: '우리 연구실이 과학기술정보통신부와 한국연구재단(NRF)이 지원하는 2026년도 개인기초연구사업 우수신진연구 과제에 최종 선정되었습니다. 본 과제를 통해 "라이트필드 디스플레이를 위한 고속 처리 기술"에 관한 심도 있는 연구를 수행할 예정입니다.',
+    image: 'assets/News/NRF.png' 
   },
   {
-    date: '2026.02.10',
-    tag: 'Talk',
-    title: 'Keynote at KCGS 2026',
-    titleKo: '지도교수 초청 강연 · KCGS 2026 Keynote',
-    excerpt: 'The lab director delivered a keynote titled "Immersive Media and Neural Rendering" at the Korea Computer Graphics Society Conference 2026.',
-    image: 'assets/project-nerf.jpg'
+    date: '2025.12.30',
+    tag: ['Conference', 'Award'],
+    title: 'Lab members presented and awarded at KIBME Winter Conference 2025',
+    titleKo: '2025 한국방송미디어공학회 동계학술대회 참가 및 장려상 수상',
+    excerpt: '연구실 소속 석사과정 3명(양서준, 전지우, 정인규)과 캡스톤디자인 참여 학부생 3명이 2025년 한국방송미디어공학회 동계학술대회에서 연구 성과를 발표했습니다. 특히, 캡스톤디자인 참여 학부생의 논문이 장려상을 수상하였습니다.',
+    image: 'assets/News/방미공_25동계_상장.png' 
   },
   {
-    date: '2025.11.28',
-    tag: 'Collaboration',
-    title: 'Digital heritage collaboration with MMCA',
-    titleKo: '국립현대미술관과 문화유산 디지털 복원 공동 연구 협약',
-    excerpt: 'A joint research agreement on digital cultural heritage archiving using volumetric neural rendering has begun.',
-    image: 'assets/project-nerf.jpg'
-  }
+    date: '2025.12.08',
+    tag: ['Publication'],
+    title: 'Paper accepted to Image and Vision Computing',
+    titleKo: 'Image and Vision Computing 저널(SCIE) 논문 게재 확정',
+    excerpt: 'Semantic Edge Detection을 위한 새로운 조합 네트워크 모델을 제안한 논문 "CONXA: A CONvnext and CROSS-attention combination network for Semantic Edge Detection"이 국제 학술지 Image and Vision Computing (Vol. 166)에 최종 게재 확정되었습니다.',
+    image: 'assets/News/IMAGE_AND_VISION_COMPUTING.png' 
+  },
+  {
+    date: '2025.11.14',
+    tag: ['Conference', 'Award'], 
+    title: 'Capstone design students awarded at KIBME Fall Conference 2025',
+    titleKo: '2025 한국방송미디어공학회 추계학술대회 논문 발표 및 장려상 수상',
+    excerpt: '연구실 소속 캡스톤디자인 참여 학부생(이예빈, 임동휘)이 2025년 한국방송미디어공학회 추계학술대회에서 2편의 논문을 발표하였으며, 우수논문 장려상을 수상하였습니다.',
+    image: 'assets/News/방미공_25추계_상장.png' 
+  },
+  {
+    date: '2025.09.04',
+    tag: ['Grant'],
+    title: 'M.S. student Ingyu Jeong selected for the NRF Master\'s Research Grant',
+    titleKo: '정인규 연구원(M.S.), 정부지원 석사과정생 연구장려금 지원사업 신규과제 선정',
+    excerpt: '연구실 소속 정인규 석사과정 연구원이 과학기술정보통신부와 한국연구재단(NRF)이 주관하는 2026년도 석사과정생 연구장려금 지원사업에 최종 선정되었습니다. 향후 1년간 주도적으로 독립적인 연구 과제를 수행할 예정입니다.',
+    image: 'assets/News/NRF.png' 
+  },
+  {
+    date: '2025.06.24',
+    tag: ['Conference', 'Award'], 
+    title: '6 papers presented and Best Paper Award at KIBME Summer Conference 2025',
+    titleKo: '2025 한국방송미디어공학회 하계학술대회 논문 6편 발표 및 우수논문상 수상',
+    excerpt: '우리 연구실에서 2025년 한국방송미디어공학회 하계학술대회에 총 6편의 연구 논문을 발표하였습니다. 특히 양서준 연구원(M.S.)이 발표한 논문이 우수논문상(우수상)을 수상하였습니다.',
+    image: 'assets/News/방미공_25하계.png' 
+  },
+  {
+    date: '2025.03.02',
+    tag: ['Notice'],
+    title: 'Welcome to our new graduate students for Spring 2025',
+    titleKo: '2025학년도 1학기 석사과정 신입생 입학',
+    excerpt: '2025학년도 1학기 신임 석사과정 연구원으로 양서준, 전지우, 정인규 학생이 실감미디어연구실에 합류하였습니다. 새로운 연구원들의 입학을 환영합니다.',
+    image: 'assets/News/학교1.jpg' 
+  },
+  {
+    date: '2025.01.22',
+    tag: ['Conference'],
+    title: 'Lab members presented at ICEIC in Osaka, Japan',
+    titleKo: '정인규, 양서준 연구원, 일본 오사카 ICEIC 국제학술대회 논문 발표',
+    excerpt: '연구실 소속 정인규, 양서준 연구원(M.S.)이 일본 오사카에서 개최된 국제학술대회 ICEIC(International Conference on Electronics, Information, and Communication)에 참석하여 연구 성과를 성공적으로 발표하였습니다.',
+    image: 'assets/News/ICEIC25.png' 
+  },
+  {
+    date: '2025.01.12',
+    tag: ['Conference'], 
+    title: 'Paper presented at IEEE ICCE 2025',
+    titleKo: '국제학술대회 IEEE ICCE 2025 논문 발표',
+    excerpt: '우리 연구실의 Semantic Edge Detection 관련 최신 연구 성과를 담은 논문 "Semantic Edge Detection with ConvNeXt and Bi-directional MLA"가 컴퓨터 공학 및 전자 분야 국제학술대회인 IEEE ICCE 2025에서 성공적으로 발표되었습니다.',
+    image: 'assets/News/ICCE25.png' 
+  },
+  {
+    date: '2024.11.21',
+    tag: ['Conference', 'Award'], 
+    title: 'Capstone design students awarded at KIBME Fall Conference 2024',
+    titleKo: '2024 한국방송미디어공학회 추계학술대회 논문 발표 및 장려상 수상',
+    excerpt: '연구실 소속 캡스톤디자인 참여 학부생(이서린, 김보연, 이정훈)이 2024년 한국방송미디어공학회 추계학술대회에 참석하여 연구 성과를 성공적으로 발표하였으며, 우수논문 장려상을 수상하였습니다.',
+    image: 'assets/News/방미공_24추계.png' 
+  },
+  {
+    date: '2024.06.28',
+    tag: ['Conference', 'Award'], 
+    title: 'Undergraduate researchers presented and awarded at KIBME Summer Conference 2024',
+    titleKo: '학부연구생 3인, 2024 한국방송미디어공학회 하계학술대회 발표 및 우수포스터상 수상',
+    excerpt: '연구실 소속 학부연구생 양서준, 전지우, 정인규 학생이 2024년 한국방송미디어공학회 하계학술대회에서 논문을 발표했습니다. 특히 전지우 학생은 심사위원들의 높은 평가를 받아 우수포스터상(우수상)을 수상하였습니다.',
+    image: 'assets/News/방미공_24하계.png' 
+  },
+  {
+    date: '2024.05.20',
+    tag: ['Conference'], 
+    title: 'Paper presented at IEEE ISCAS 2024',
+    titleKo: '국제학술대회 IEEE ISCAS 2024 논문 발표',
+    excerpt: '영상 처리 및 엣지 검출을 위한 새로운 디코더 구조를 제안한 논문 "Tri-Directional Decoder for Edge Discontinuity Classification"이 회로 및 시스템 분야 국제학술대회인 IEEE ISCAS 2024에서 발표되었습니다.',
+    image: 'assets/News/ISCAS24.png' 
+  },
+  {
+    date: '2024.01.30',
+    tag: ['Conference'],
+    title: 'Undergraduate researchers presented at ICEIC 2024 in Taiwan',
+    titleKo: '학부연구생 전지우, 정인규 대만 타이베이 ICEIC 국제학술대회 논문 발표',
+    excerpt: '연구실 소속 학부연구생 전지우, 정인규 학생이 대만 타이베이(Taipei Marriott Hotel)에서 개최된 국제학술대회 ICEIC 2024에 참석하여 연구 성과를 발표하였습니다.',
+    image: 'assets/News/ICEIC24.jpg' 
+  },
 ];
 
 // ─── PROJECTS ─────────────────────────────────────────

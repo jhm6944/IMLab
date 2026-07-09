@@ -363,9 +363,11 @@ function Home() {
             <a key={i} className="hm-news-item" href="news.html">
               <div className="hm-news-thumb"><img src={n.image} alt="" /></div>
               <div className="hm-news-meta">
-                <span className="im-mono hm-news-date">{n.date}</span>
-                <span className="im-mono hm-news-tag">{n.tag}</span>
-              </div>
+                  <span className="im-mono hm-news-date">{n.date}</span>
+                  {(Array.isArray(n.tag) ? n.tag : [n.tag]).map((t, tidx) => (
+                    <span key={tidx} className="im-mono hm-news-tag">{t}</span>
+                  ))}
+                </div>
               <h3 className="hm-news-title">{n.title}</h3>
               <p className="hm-news-excerpt">{n.excerpt}</p>
             </a>

@@ -8,7 +8,7 @@ function NewsPage() {
       <style>{`
         .np-list { display: flex; flex-direction: column; padding: 24px 0 40px; }
         .np-item {
-          display: grid; grid-template-columns: 120px 220px 1fr auto; gap: 32px;
+          display: grid; grid-template-columns: 120px 220px 1fr; gap: 32px; /* 3칸으로 변경 */
           padding: 28px 0;
           border-top: 1px solid rgba(22,23,27,0.15);
           align-items: center;
@@ -55,13 +55,16 @@ function NewsPage() {
               <div className="np-thumb"><img src={n.image} alt="" /></div>
               <div>
                 <div className="np-meta">
-                  <span className="im-mono np-tag">{n.tag}</span>
+                  {/* tag가 배열인 경우, map을 돌며 여러 개의 태그를 출력합니다 */}
+                  {(Array.isArray(n.tag) ? n.tag : [n.tag]).map((t, tidx) => (
+                    <span key={tidx} className="im-mono np-tag">{t}</span>
+                  ))}
                 </div>
                 <h3 className="np-title">{n.title}</h3>
                 {n.titleKo && <div className="np-title-ko">{n.titleKo}</div>}
                 <p className="np-excerpt">{n.excerpt}</p>
               </div>
-              <div className="np-arrow">→</div>
+              {/* <div className="np-arrow">→</div> */}
             </article>
           ))}
         </div>
