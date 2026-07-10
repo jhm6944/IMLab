@@ -125,11 +125,18 @@ function ShellStyles() {
       .im-thumb-hover:hover .im-thumb img, a:hover > .im-thumb img { transform: scale(1.03); filter: saturate(1); }
 
       @media (max-width: 820px) {
-        .im-nav-inner { padding: 14px 20px; grid-template-columns: auto auto; gap: 12px; }
-        .im-nav-list { grid-column: 1 / -1; flex-wrap: wrap; justify-content: flex-start; }
+        .im-nav-inner { padding: 12px 20px; grid-template-columns: auto 1fr; gap: 16px; }
+        .im-nav-list { grid-column: 1 / -1; flex-wrap: wrap; justify-content: flex-start; gap: 8px; }
         .im-nav-right { display: none; }
         .im-section { padding: 0 20px; }
-        .im-footer-grid { grid-template-columns: 1fr 1fr; }
+        .im-footer-grid { grid-template-columns: 1fr; gap: 32px; } /* 푸터를 1열로 변경 */
+
+        /* 모바일에서는 메인 로고와 글씨를 조금 줄입니다 */
+        .im-brand-name { font-size: 17px; }
+        .im-brand-mark { width: 36px; height: 27px; }
+        
+        /* 페이지 공통 헤더 제목 크기 축소 */
+        .im-page-header h1 { font-size: clamp(36px, 10vw, 48px); }
       }
     `}</style>
   );

@@ -262,15 +262,21 @@ function Home() {
         }
 
         @media (max-width: 900px) {
-          .hm-hero-grid { grid-template-columns: 1fr; }
-          .hm-hero-3d { min-height: 320px; }
-          .hm-snapshot { grid-template-columns: repeat(2, 1fr); }
-          .hm-snap-cell { border-left: none; padding: 12px 0; border-top: 1px solid rgba(22,23,27,0.12); }
-          .hm-snap-cell:first-child, .hm-snap-cell:nth-child(2) { border-top: none; padding-top: 0; }
-          .hm-news-list, .hm-pubs-list { grid-template-columns: 1fr; }
-          .hm-recruit { grid-template-columns: 1fr; padding: 32px 24px; }
-          .hm-about-block { grid-template-columns: 1fr; gap: 32px; }
-          .hm-research-strip { grid-template-columns: 1fr; }
+          /* 히어로 섹션 세로로 배치 및 높이 자동화 */
+          .hm-hero-grid { grid-template-columns: 1fr; height: auto; gap: 32px; }
+          .hm-hero-3d { min-height: 280px; height: 280px; }
+          
+          /* 모바일 글자 크기 최적화 */
+          .hm-hero-title { font-size: clamp(40px, 10vw, 56px); margin-bottom: 20px; }
+          .hm-hero-lead { font-size: 15px; }
+
+          /* 뉴스, 논문, 연구분야 카드를 모바일에서 1열로 변경 */
+          .hm-news-list, .hm-pubs-list, .hm-areas-grid { grid-template-columns: 1fr; gap: 24px; }
+          
+          /* 리크루팅 배너 세로로 배치 */
+          .hm-recruit { grid-template-columns: 1fr; padding: 32px 24px; margin: 48px 0 20px; }
+          .hm-recruit::before { display: none; /* 모바일에서는 둥근 배경 효과 숨김 */ }
+          .hm-recruit-title { font-size: 24px; }
         }
       `}</style>
 

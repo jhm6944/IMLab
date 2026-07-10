@@ -37,7 +37,11 @@ function ContactPage() {
         .cp-list .num { font-family: 'Fraunces', serif; color: var(--accent); }
 
         @media (max-width: 820px) {
-          .cp-grid { grid-template-columns: 1fr; gap: 32px; }
+          .cp-grid { grid-template-columns: 1fr; gap: 48px; padding: 16px 0 32px; }
+          /* 모바일에서는 'Address' 같은 라벨과 내용이 위아래로 나오게 변경 */
+          .cp-row { grid-template-columns: 1fr; gap: 4px; padding: 12px 0; }
+          .cp-cta { flex-direction: column; align-items: flex-start; gap: 12px; padding: 24px; }
+          .cp-cta .arrow { align-self: flex-end; } /* 화살표를 우측 하단으로 이동 */
         }
       `}</style>
 
