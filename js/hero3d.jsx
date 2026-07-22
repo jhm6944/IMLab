@@ -1,5 +1,5 @@
 // Interactive 3D hero object (Three.js)
-// style: 'points' (room/box), 'logo' (IM monogram point cloud)
+// style: 'points' (room/box), 'logo' (3D Gaussian Splatting)
 
 const { useEffect: h3d_useEffect, useRef: h3d_useRef } = React;
 
@@ -14,7 +14,6 @@ function Hero3D({ style = 'points', accent = '#4a7fbc', bg = 'transparent', auto
     if (!mount) return;
 
     const w = mount.clientWidth;
-    // const h = mount.clientHeight;
     const h = 340; 
 
     const scene = new THREE.Scene();
@@ -33,9 +32,12 @@ function Hero3D({ style = 'points', accent = '#4a7fbc', bg = 'transparent', auto
     scene.add(group);
 
     const accentColor = new THREE.Color(accent);
+    
+    // 💡 3DGS 뷰어 인스턴스를 담을 변수 (루프에서 업데이트하기 위함)
+    let splatViewerInstance = null;
 
     if (style === 'points') {
-      // point cloud on the inside of a box (a "room")
+      // --- [FIG.01] 기존 Room Point Cloud 코드 유지 ---
       const geom = new THREE.BufferGeometry();
       const N = 4500;
       const positions = new Float32Array(N * 3);
@@ -74,120 +76,65 @@ function Hero3D({ style = 'points', accent = '#4a7fbc', bg = 'transparent', auto
       const edges = new THREE.EdgesGeometry(boxGeom);
       const lineMat = new THREE.LineBasicMaterial({ color: accentColor, transparent: true, opacity: 0.15 });
       group.add(new THREE.LineSegments(edges, lineMat));
+
     } else if (style === 'logo') {
-      // Renders the IM monogram as a proper 3D point cloud.
-      // Each letter is defined as (x, y) column offsets; points are jittered in z.
-      // I: three-stack column;  M: two columns with a middle notch dip.
-      const clouds = [];
-      // I letter — column at x = -2.2, height 3.2
-      for (let i = 0; i < 600; i++) {
-        const y = (Math.random() - 0.5) * 3.2;
-        const x = -2.2 + (Math.random() - 0.5) * 0.55;
-        const z = (Math.random() - 0.5) * 0.55;
-        clouds.push([x, y, z]);
-      }
-      // I serifs (top & bottom bars)
-      for (let i = 0; i < 300; i++) {
-        const bar = Math.random() < 0.5 ? 1.55 : -1.55;
-        const y = bar + (Math.random() - 0.5) * 0.35;
-        const x = -2.2 + (Math.random() - 0.5) * 1.6;
-        const z = (Math.random() - 0.5) * 0.55;
-        clouds.push([x, y, z]);
-      }
-      // M — two verticals at x = -0.4 and x = 2.4
-      for (const cx of [-0.4, 2.4]) {
-        for (let i = 0; i < 700; i++) {
-          const y = (Math.random() - 0.5) * 3.2;
-          const x = cx + (Math.random() - 0.5) * 0.55;
-          const z = (Math.random() - 0.5) * 0.55;
-          clouds.push([x, y, z]);
-        }
-      }
-      // M — two diagonals from top of each vertical down to the middle notch (x=1.0, y=0)
-      const diagPoints = 600;
-      for (let side = 0; side < 2; side++) {
-        const x0 = side === 0 ? -0.4 : 2.4;
-        const x1 = 1.0;
-        for (let i = 0; i < diagPoints; i++) {
-          const t = Math.random();
-          const x = x0 + (x1 - x0) * t + (Math.random() - 0.5) * 0.5;
-          const y = 1.55 + (0 - 1.55) * t + (Math.random() - 0.5) * 0.4;
-          const z = (Math.random() - 0.5) * 0.55;
-          clouds.push([x, y, z]);
-        }
-      }
+      // --- [FIG.02] 새로운 3DGS 렌더링 코드 ---
+      // Babel 간섭을 피하기 위한 동적 import
+      new Function("return import('@mkkellogg/gaussian-splats-3d')")()
+      .then((module) => {
+        splatViewerInstance = new module.DropInViewer({
+          'dynamicScene': false,
+          'sharedMemoryForWorkers': false
+        });
+        
+        // ⚠️ 사용할 splat 또는 ply 파일 경로를 아래에 입력하세요.
+        splatViewerInstance.addSplatScene('assets/splat.splat', {
+          'splatAlphaCrop': 0.1
+        }).then(() => {
+          splatViewerInstance.scale.set(2.0, 2.0, 2.0); // 기존에 맞추신 스케일 유지
+          splatViewerInstance.position.set(0, 2.0, 10); // 기존에 맞추신 위치 유지
 
-      const N = clouds.length;
-      const positions = new Float32Array(N * 3);
-      const colors = new Float32Array(N * 3);
-      for (let i = 0; i < N; i++) {
-        // scale down to fit the frame
-        positions[i * 3] = clouds[i][0] * 0.7;
-        positions[i * 3 + 1] = clouds[i][1] * 0.7;
-        positions[i * 3 + 2] = clouds[i][2] * 0.7;
-        const c = new THREE.Color();
-        const t = Math.random();
-        if (t < 0.75) c.copy(accentColor).multiplyScalar(0.7 + Math.random() * 0.55);
-        else c.setHSL(0.55 + Math.random() * 0.08, 0.35, 0.65 + Math.random() * 0.2);
-        colors[i * 3] = c.r;
-        colors[i * 3 + 1] = c.g;
-        colors[i * 3 + 2] = c.b;
-      }
-      const geom = new THREE.BufferGeometry();
-      geom.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-      geom.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-      const mat = new THREE.PointsMaterial({ size: 0.048, vertexColors: true, transparent: true, opacity: 0.95, sizeAttenuation: true });
-      group.add(new THREE.Points(geom, mat));
+          // 👇 추가할 코드: X축을 기준으로 90도 회전시켜서 Y축 방향으로 바라보게 눕힙니다.
+          // 위에서 아래를 내려다보는 시점:
+          splatViewerInstance.rotation.x = -Math.PI / 2; 
+          
+          // (만약 반대로 바닥에서 하늘을 올려다보는 시점이 된다면 마이너스를 뺍니다)
+          // splatViewerInstance.rotation.x = Math.PI / 2;
+          group.add(splatViewerInstance);
+        });
+      }).catch(err => console.error("3DGS 로딩 에러:", err));
 
-      // faint ambient scatter around the monogram
-      const bgN = 800;
-      const bgPos = new Float32Array(bgN * 3);
-      const bgCol = new Float32Array(bgN * 3);
-      for (let i = 0; i < bgN; i++) {
-        const r = 2.6 + Math.random() * 0.6;
-        const th = Math.random() * Math.PI * 2;
-        const ph = (Math.random() - 0.5) * Math.PI * 0.9;
-        bgPos[i * 3] = r * Math.cos(th) * Math.cos(ph);
-        bgPos[i * 3 + 1] = r * Math.sin(ph);
-        bgPos[i * 3 + 2] = r * Math.sin(th) * Math.cos(ph);
-        const c = new THREE.Color().copy(accentColor).multiplyScalar(0.35);
-        bgCol[i * 3] = c.r;
-        bgCol[i * 3 + 1] = c.g;
-        bgCol[i * 3 + 2] = c.b;
-      }
-      const bgGeom = new THREE.BufferGeometry();
-      bgGeom.setAttribute('position', new THREE.BufferAttribute(bgPos, 3));
-      bgGeom.setAttribute('color', new THREE.BufferAttribute(bgCol, 3));
-      const bgMat = new THREE.PointsMaterial({ size: 0.022, vertexColors: true, transparent: true, opacity: 0.6, sizeAttenuation: true });
-      group.add(new THREE.Points(bgGeom, bgMat));
-
-      // pull camera slightly closer
       camera.position.set(0, 0, 5.2);
     }
 
-    scene.add(new THREE.AmbientLight(0xffffff, 0.8));
-
-    const el = renderer.domElement;
-    el.style.cursor = 'grab';
+    // --- 마우스 및 터치 상호작용 (회전) 로직 ---
     const s = stateRef.current;
+    const el = renderer.domElement;
+    
     const onDown = (e) => {
       s.dragging = true;
-      el.style.cursor = 'grabbing';
-      const t = e.touches ? e.touches[0] : e;
-      s.x = t.clientX; s.y = t.clientY;
+      s.x = e.touches ? e.touches[0].clientX : e.clientX;
+      s.y = e.touches ? e.touches[0].clientY : e.clientY;
+      s.vrx = 0;
+      s.vry = 0;
     };
     const onMove = (e) => {
       if (!s.dragging) return;
-      const t = e.touches ? e.touches[0] : e;
-      const dx = t.clientX - s.x;
-      const dy = t.clientY - s.y;
-      s.ry += dx * 0.007;
-      s.rx += dy * 0.007;
-      s.vry = dx * 0.007;
-      s.vrx = dy * 0.007;
-      s.x = t.clientX; s.y = t.clientY;
+      const nx = e.touches ? e.touches[0].clientX : e.clientX;
+      const ny = e.touches ? e.touches[0].clientY : e.clientY;
+      const dx = nx - s.x;
+      const dy = ny - s.y;
+      s.x = nx;
+      s.y = ny;
+      s.vry = dx * 0.005;
+      s.vrx = dy * 0.005;
+      s.rx += s.vrx;
+      s.ry += s.vry;
     };
-    const onUp = () => { s.dragging = false; el.style.cursor = 'grab'; };
+    const onUp = () => {
+      s.dragging = false;
+    };
+
     el.addEventListener('mousedown', onDown);
     window.addEventListener('mousemove', onMove);
     window.addEventListener('mouseup', onUp);
@@ -195,25 +142,46 @@ function Hero3D({ style = 'points', accent = '#4a7fbc', bg = 'transparent', auto
     window.addEventListener('touchmove', onMove, { passive: true });
     window.addEventListener('touchend', onUp);
 
+        // --- 렌더링 애니메이션 루프 ---
     let raf;
+    let autoRotateTime = 0; // 진자 운동을 위한 시간 변수
+
     const animate = () => {
       if (!s.dragging) {
+        // 마찰력으로 자연스럽게 감속
         s.vrx *= 0.95;
         s.vry *= 0.95;
         s.rx += s.vrx;
         s.ry += s.vry;
-        if (autoRotate) s.ry += 0.002;
+
+        if (autoRotate) {
+          if (style === 'logo') {
+            autoRotateTime += 0.015; // 진자 운동 속도 (값이 클수록 빨리 흔들림)
+            
+            // 💡 핵심: 절대 각도를 덮어씌우는 대신, '회전하는 힘(속도)'을 매 프레임 더해줍니다.
+            // Math.cos를 사용하면 현재 위치를 중심으로 자연스럽게 왔다갔다 합니다.
+            // 진폭(흔들리는 범위) = 0.0045 / 0.015 = 0.3 라디안 (약 17도)
+            s.ry += Math.cos(autoRotateTime) * 0.0045; 
+            
+            // 상하(x축) 각도는 사용자가 드래그한 상태 그대로 자연스럽게 둡니다.
+          } else {
+            // 원본 Room Point Cloud는 빙글빙글 무한 회전
+            s.ry += 0.002;
+          }
+        }
       }
+
       group.rotation.x = s.rx;
       group.rotation.y = s.ry;
+      
       renderer.render(scene, camera);
       raf = requestAnimationFrame(animate);
     };
     animate();
 
+    // --- 리사이즈 처리 및 클린업 ---
     const onResize = () => {
       const nw = mount.clientWidth;
-      // const nh = mount.clientHeight;
       const nh = 340;
       camera.aspect = nw / nh;
       camera.updateProjectionMatrix();

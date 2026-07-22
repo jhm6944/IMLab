@@ -888,6 +888,17 @@ const PUBLICATIONS = [
     image: ''
   },
   {
+    id: 'patent-26-02',
+    category: 'patent',
+    title: '마이크로 이미지 생성 방법 및 그 장치',
+    authors: '이채은, 정현민',
+    venue: '등록 국내 10-2026-0082430',
+    month: 'Apr.', 
+    day: '08',
+    year: '2026',
+    image: ''
+  },
+  {
     id: 'patent-26-01',
     category: 'patent',
     title: '시간적 인접성 및 공간적 인접성을 동시에 이용한 라이트 필드 압축 방법 및 장치',

@@ -22,7 +22,7 @@ function Home() {
   //   1: "IM Monogram" — our lab mark rendered as a point cloud (per user request)
   const CONTENTS = [
     { key: 'room',  label: 'FIG.01 — Point Cloud · Capture Volume', style: 'points', caption: 'A room reconstructed as a sparse point cloud — our capture volume.' },
-    { key: 'logo',  label: 'FIG.02 — Point Cloud · IMMEDIA Mark',   style: 'logo',   caption: 'The lab mark rendered as a 3D point cloud.' }
+    { key: 'logo',  label: 'FIG.02 — 3D Gaussian Splatting', style: 'logo', caption: 'High-fidelity neural rendering of our laboratory space.' }
   ];
   const [contentIdx, setContentIdx] = hm_useState(0);
   const cur = CONTENTS[contentIdx];
